@@ -4,6 +4,8 @@ doctrine:
         server_version: '12.0'
         charset: 'UTF8'
         url: '%env(resolve:DATABASE_URL)%'
+        types:
+            uuid:  Ramsey\Uuid\Doctrine\UuidType
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore

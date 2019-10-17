@@ -1,0 +1,13 @@
+hautelook_alice:
+    fixtures_path:
+        - fixtures/api
+    root_dirs:
+        - '%kernel.root_dir%'
+        - '%kernel.project_dir%'
+
+services:
+    app.alice.property_access.reflection_property_accessor:
+        class: Nelmio\Alice\PropertyAccess\ReflectionPropertyAccessor
+        public: false
+        autowire: true
+        decorates: nelmio_alice.property_accessor

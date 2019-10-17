@@ -1,0 +1,20 @@
+App\Domain\Entity\Contact:
+  contact_{1..10}:
+    emails:
+      - <safeEmail()>
+    phoneNumbers:
+      - <e164PhoneNumber()>
+      - <e164PhoneNumber()>
+
+App\Domain\Entity\Address:
+  address_{1..10}:
+    city: <city()>
+    zipCode: <postcode()>
+    street: <streetAddress()>
+
+App\Domain\Entity\Club:
+  club_{1..10}:
+    id: <uuid()>
+    name: <company()>
+    contact: '@contact_<current()>'
+    address: '@address_<current()>'
