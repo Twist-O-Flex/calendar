@@ -18,3 +18,8 @@ App\Domain\Entity\Club:
     name: <company()>
     contact: '@contact_<current()>'
     address: '@address_<current()>'
+  club_11:
+    id: <((new \Ramsey\Uuid\UuidFactory())->fromString('df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1'))>
+    name: <company()>
+    contact: '@contact_1'
+    address: '@address_1'
