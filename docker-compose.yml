@@ -1,0 +1,12 @@
+version: '3.5'
+
+services:
+  pgsql:
+    image: pgsql
+    build: docker/pgsql
+    environment:
+      - POSTGRES_DB=calendar
+      - POSTGRES_USER=calendar_rw
+      - POSTGRES_PASSWORD=calendar
+      - POSTGRES_RO_USER=calendar_ro
+      - POSTGRES_RO_PASSWORD=calendar
