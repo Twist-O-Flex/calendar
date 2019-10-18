@@ -4,9 +4,13 @@ services:
   pgsql:
     image: pgsql
     build: docker/pgsql
+    container_name: pgsql
     environment:
       - POSTGRES_DB=calendar
       - POSTGRES_USER=calendar_rw
       - POSTGRES_PASSWORD=calendar
       - POSTGRES_RO_USER=calendar_ro
       - POSTGRES_RO_PASSWORD=calendar
+
+  wait:
+    image: martin/wait
