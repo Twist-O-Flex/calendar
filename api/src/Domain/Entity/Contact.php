@@ -20,22 +20,8 @@ class Contact
         return $this->emails;
     }
 
-    public function setEmails(array $emails): self
-    {
-        $this->emails = $emails;
-
-        return $this;
-    }
-
     public function getPhoneNumbers(): array
     {
         return $this->phoneNumbers;
-    }
-
-    public function setPhoneNumbers(array $phoneNumbers): self
-    {
-        $this->phoneNumbers = $phoneNumbers;
-
-        return $this;
     }
 }

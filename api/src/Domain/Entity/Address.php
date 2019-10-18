@@ -23,34 +23,13 @@ class Address
         return $this->city;
     }
 
-    public function setCity(string $city): self
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
     public function getZipCode(): string
     {
         return $this->zipCode;
     }
 
-    public function setZipCode(string $zipCode): self
-    {
-        $this->zipCode = $zipCode;
-
-        return $this;
-    }
-
     public function getStreet(): string
     {
         return $this->street;
-    }
-
-    public function setStreet(string $street): self
-    {
-        $this->street = $street;
-
-        return $this;
     }
 }

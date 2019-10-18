@@ -49,34 +49,13 @@ class Club
         return $this->name;
     }
 
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
     public function getAddress(): Address
     {
         return $this->address;
     }
 
-    public function setAddress(Address $address): self
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
     public function getContact(): Contact
     {
         return $this->contact;
-    }
-
-    public function setContact(Contact $contact): self
-    {
-        $this->contact = $contact;
-
-        return $this;
     }
 }
