@@ -16,7 +16,7 @@ test-units: fixtures
 	vendor/bin/phpunit --stop-on-failure --testdox
 
 test-quality:
-	docker-compose run --rm -v "${PWD}":/app phpstan analyse /app/src
+	docker-compose run --rm -v "${PWD}":/app phpstan analyse -l 4 -c phpstan.neon /app/src /app/tests
 
 test-cs-php:
 	docker-compose run --rm -v "${PWD}":/app phpcs --standard=PSR12 src/
