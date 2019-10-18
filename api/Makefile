@@ -18,5 +18,8 @@ test-units: fixtures
 test-quality:
 	docker-compose run --rm -v "${PWD}":/app phpstan analyse /app/src
 
+test-cs-php:
+	docker-compose run --rm -v "${PWD}":/app phpcs --standard=PSR12 src/
+
 fixtures: run-pgsql
 	bin/console hautelook:fixtures:load --no-interaction

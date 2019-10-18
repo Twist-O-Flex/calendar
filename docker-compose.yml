@@ -16,5 +16,9 @@ services:
     image: phpstan
     build: docker/phpstan
 
+  phpcs:
+    image: phpcs
+    build: docker/phpcs
+
   wait:
     image: martin/wait
