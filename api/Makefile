@@ -15,5 +15,8 @@ test-units: fixtures
 	bin/console cache:clear --no-debug --env test
 	vendor/bin/phpunit --stop-on-failure --testdox
 
+test-quality:
+	docker-compose run --rm -v "${PWD}":/app phpstan analyse /app/src
+
 fixtures: run-pgsql
 	bin/console hautelook:fixtures:load --no-interaction

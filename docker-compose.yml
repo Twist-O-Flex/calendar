@@ -12,5 +12,9 @@ services:
       - POSTGRES_RO_USER=calendar_ro
       - POSTGRES_RO_PASSWORD=calendar
 
+  phpstan:
+    image: phpstan
+    build: docker/phpstan
+
   wait:
     image: martin/wait
