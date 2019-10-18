@@ -1,6 +1,6 @@
 hautelook_alice:
     fixtures_path:
-        - fixtures/api
+        - fixtures/test
     root_dirs:
         - '%kernel.root_dir%'
         - '%kernel.project_dir%'
