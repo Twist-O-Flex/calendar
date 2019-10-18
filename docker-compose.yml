@@ -20,5 +20,9 @@ services:
     image: phpcs
     build: docker/phpcs
 
+  phpcbf:
+    image: phpcbf
+    build: docker/phpcbf
+
   wait:
     image: martin/wait

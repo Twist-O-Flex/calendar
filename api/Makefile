@@ -21,5 +21,8 @@ test-quality:
 test-cs-php:
 	docker-compose run --rm -v "${PWD}":/app phpcs --standard=PSR12 src/
 
+fix-cs-php:
+	docker-compose run --rm -v "${PWD}":/app phpcbf --standard=PSR12 src/
+
 fixtures: run-pgsql
 	bin/console hautelook:fixtures:load --no-interaction
