@@ -6,11 +6,23 @@ App\Domain\Entity\Contact:
       - <e164PhoneNumber()>
       - <e164PhoneNumber()>
 
+  contact_11:
+    emails:
+      - 'toto@example.com'
+      - 'tutu@example.com'
+    phoneNumbers:
+      - '+9855562307762'
+
 App\Domain\Entity\Address:
   address_{1..10}:
     city: <city()>
     zipCode: <postcode()>
     street: <streetAddress()>
+
+  address_11:
+    city: 'Sartrouville'
+    zipCode: '78500'
+    street: '4 rue de la pouille'
 
 App\Domain\Entity\Club:
   club_{1..10}:
@@ -20,6 +32,6 @@ App\Domain\Entity\Club:
     address: '@address_<current()>'
   club_11:
     id: <((new \Ramsey\Uuid\UuidFactory())->fromString('df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1'))>
-    name: <company()>
-    contact: '@contact_1'
-    address: '@address_1'
+    name: 'Kaboum'
+    contact: '@contact_11'
+    address: '@address_11'

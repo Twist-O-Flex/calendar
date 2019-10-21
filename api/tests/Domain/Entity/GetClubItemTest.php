@@ -2,7 +2,7 @@
 
 namespace App\Tests\Domain\Entity;
 
-use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
+use App\Tests\ApiTestCase;
 
 class GetClubItemTest extends ApiTestCase
 {
@@ -12,5 +12,6 @@ class GetClubItemTest extends ApiTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertJson($response->getContent());
+        $this->assertMatchesJsonSchema('getClubItem');
     }
 }
