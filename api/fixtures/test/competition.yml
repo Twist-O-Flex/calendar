@@ -1,0 +1,9 @@
+App\Domain\Entity\Competition:
+  competition_{1..10}:
+    id: <uuid()>
+    type: <randomCompetitionType()>
+    formation: <randomCompetitionFormation()>
+    club: '@club_<current()>'
+    startDate: <dateTimeImmutableThisMonth()>
+    duration: 1
+    quotation: <randomQuotation()>
