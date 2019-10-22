@@ -6,7 +6,7 @@ use App\Tests\ApiTestCase;
 
 class GetClubCollectionTest extends ApiTestCase
 {
-    public function testGetCollection(): void
+    public function testSchema(): void
     {
         $response = static::createClient()->request('GET', '/clubs?itemsPerPage=3');
 

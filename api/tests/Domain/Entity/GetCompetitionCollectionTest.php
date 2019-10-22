@@ -4,14 +4,14 @@ namespace App\Tests\Domain\Entity;
 
 use App\Tests\ApiTestCase;
 
-class GetClubItemTest extends ApiTestCase
+class GetCompetitionCollectionTest extends ApiTestCase
 {
     public function testSchema(): void
     {
-        $response = static::createClient()->request('GET', '/clubs/df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1');
+        $response = static::createClient()->request('GET', '/competitions?itemsPerPage=3');
 
         $this->assertResponseIsSuccessful();
         $this->assertJson($response->getContent());
-        $this->assertMatchesJsonSchema('getClubItem');
+        $this->assertMatchesJsonSchema('getCompetitionCollection');
     }
 }
