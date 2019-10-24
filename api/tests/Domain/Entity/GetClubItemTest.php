@@ -12,6 +12,5 @@ class GetClubItemTest extends ApiTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertJson($response->getContent());
-        $this->assertMatchesJsonSchema('getClubItem');
     }
 }

@@ -12,6 +12,5 @@ class GetCompetitionItemTest extends ApiTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertJson($response->getContent());
-        $this->assertMatchesJsonSchema('getCompetitionItem');
     }
 }
