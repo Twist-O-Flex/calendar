@@ -12,5 +12,23 @@ class GetClubCollectionTest extends ApiTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertJson($response->getContent());
+
+        $content = \Safe\json_decode($response->getContent(), true);
+
+        $this->assertSame("/contexts/Club", $content['@context']);
+        $this->assertSame("/clubs", $content["@id"]);
+        $this->assertSame("hydra:Collection", $content["@type"]);
+        $this->assertArrayHasKey("hydra:totalItems", $content);
+        $this->assertArrayHasKey("hydra:view", $content);
+
+        foreach ($content["hydra:member"] as $club) {
+            $this->assertArrayHasKey("@id", $club);
+            $this->assertArrayHasKey("@type", $club);
+            $this->assertArrayHasKey("id", $club);
+            $this->assertArrayHasKey("name", $club);
+            $this->assertSame(4, count($club));
+        }
+
+        $this->assertSame(3, count($content["hydra:member"]));
     }
 }

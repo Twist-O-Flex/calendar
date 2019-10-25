@@ -5,11 +5,21 @@ namespace App\Domain\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
+use App\Domain\Serialization\SerializationGroups;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
- *      collectionOperations={"get"},
- *      itemOperations={"get"}
+ *      collectionOperations={
+ *          "get"={
+ *              "normalization_context"={"groups"={SerializationGroups::COMPETITION_COLLECTION_READ}}
+ *          }
+ *      },
+ *      itemOperations={
+ *          "get"={
+ *              "normalization_context"={"groups"={SerializationGroups::COMPETITION_ITEM_READ}}
+ *          }
+ *      }
  * )
  * @ORM\Entity
  * @ORM\Table(name="competition")
@@ -55,37 +65,51 @@ class Competition
      * @ORM\Column(type="uuid", unique=true)
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+     *
+     * @Groups(SerializationGroups::READ)
      */
     private $id;
 
     /**
      * @ORM\Column(type="string")
+     *
+     * @Groups(SerializationGroups::COMPETITION_READ)
      */
     private $type;
 
     /**
      * @ORM\Column(type="string")
+     *
+     * @Groups(SerializationGroups::COMPETITION_READ)
      */
     private $formation;
 
     /**
      * @ORM\ManyToOne(targetEntity="Club")
      * @ORM\JoinColumn(name="club_id", referencedColumnName="id")
+     *
+     * @Groups(SerializationGroups::COMPETITION_READ)
      */
     private $club;
 
     /**
      * @ORM\Column(type="date_immutable")
+     *
+     * @Groups(SerializationGroups::COMPETITION_READ)
      */
     private $startDate;
 
     /**
      * @ORM\Column(type="integer")
+     *
+     * @Groups(SerializationGroups::COMPETITION_READ)
      */
     private $duration;
 
     /**
      * @ORM\Column(type="string")
+     *
+     * @Groups(SerializationGroups::COMPETITION_READ)
      */
     private $quotation;
 
