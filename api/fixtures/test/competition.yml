@@ -11,8 +11,8 @@ App\Domain\Entity\Competition:
   competition_11:
     id: <((new \Ramsey\Uuid\UuidFactory())->fromString('7d853409-ff26-4097-826e-e1f78f5a5a01'))>
     type: <randomCompetitionType()>
-    formation: <randomCompetitionFormation()>
+    formation: 'tri'
     club: '@club_1'
-    startDate: <dateTimeImmutableThisMonth()>
+    startDate: <(\DateTimeImmutable::createFromFormat(DATE_ATOM, '2019-10-05T00:00:00+00:00'))>
     duration: 1
-    quotation: <randomQuotation()>
+    quotation: 'tc'

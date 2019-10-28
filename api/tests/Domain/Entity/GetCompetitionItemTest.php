@@ -39,9 +39,9 @@ class GetCompetitionItemTest extends ApiTestCase
                     ],
                     ],
                 ],
-                "startDate" => "2019-10-02T00:00:00+00:00",
+                "startDate" => "2019-10-05T00:00:00+00:00",
                 "duration" => 1,
-                "quotation" => "pro",
+                "quotation" => "tc",
             ],
             \Safe\json_decode($response->getContent(), true)
         );
