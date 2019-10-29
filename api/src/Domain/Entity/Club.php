@@ -7,18 +7,21 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use App\Domain\Serialization\SerializationGroups;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource(
  *     collectionOperations={
  *          "get"={
  *              "normalization_context"={"groups"={SerializationGroups::CLUB_COLLECTION_READ}}
- *          }
+ *          },
+ *          "post"
  *      },
  *     itemOperations={
  *          "get"={
  *              "normalization_context"={"groups"={SerializationGroups::CLUB_ITEM_READ}}
- *          }
+ *          },
+ *          "put"
  *     }
  * )
  * @ORM\Entity
@@ -44,6 +47,9 @@ class Club
      *     SerializationGroups::CLUB_COLLECTION_READ,
      *     SerializationGroups::COMPETITION_COLLECTION_READ
      * })
+     *
+     * @Assert\NotNull
+     * @Assert\NotBlank
      */
     private $name;
 
@@ -51,6 +57,9 @@ class Club
      * @ORM\Embedded(class="App\Domain\Entity\Address")
      *
      * @Groups(SerializationGroups::ITEM_READ)
+     *
+     * @Assert\NotNull
+     * @Assert\Valid
      */
     private $address;
 
@@ -58,6 +67,9 @@ class Club
      * @ORM\Embedded(class="App\Domain\Entity\Contact")
      *
      * @Groups(SerializationGroups::ITEM_READ)
+     *
+     * @Assert\NotNull
+     * @Assert\Valid
      */
     private $contact;
 
@@ -71,13 +83,34 @@ class Club
         return $this->name;
     }
 
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
     public function getAddress(): Address
     {
         return $this->address;
     }
 
+    public function setAddress(Address $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
     public function getContact(): Contact
     {
         return $this->contact;
+    }
+
+    public function setContact(Contact $contact): self
+    {
+        $this->contact = $contact;
+
+        return $this;
     }
 }
