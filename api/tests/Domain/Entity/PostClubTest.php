@@ -9,23 +9,10 @@ class PostClubTest extends ApiTestCase
 {
     public function testPost(): void
     {
-        $response = static::createClient()->request(
+        $response = $this->getAuthenticatedClientWith('021c6dc9-4a8e-416a-96ca-b73fed2adb35')->request(
             'POST',
             '/clubs',
-            [
-                'json' => [
-                    'name' => 'La Boule A Zéro',
-                    'address' => [
-                        'city' => 'Sartrouville',
-                        'zipCode' => '78500',
-                        'street' => '6 rue Lisse',
-                    ],
-                    'contact' => [
-                        'emails' => ['labouleazero@gmail.com'],
-                        'phoneNumbers' => ['0123456789'],
-                    ],
-                ]
-            ]
+            ['json' => $this->getValidPayload()]
         );
 
         $this->assertSame(Response::HTTP_CREATED, $response->getStatusCode());
@@ -58,7 +45,7 @@ class PostClubTest extends ApiTestCase
      */
     public function testPostClubWithInvalidPayload(array $payload, callable $assert): void
     {
-        $response = static::createClient()->request(
+        $response = $this->getAuthenticatedClientWith('021c6dc9-4a8e-416a-96ca-b73fed2adb35')->request(
             'POST',
             '/clubs',
             [
@@ -164,6 +151,44 @@ class PostClubTest extends ApiTestCase
                     $violations
                 );
             }
+        ];
+    }
+
+    public function testPostReturnUnauthorized(): void
+    {
+        $response = $this->getAnonymousClient()->request(
+            'POST',
+            '/clubs',
+            ['json' => $this->getValidPayload()]
+        );
+
+        $this->assertSame(Response::HTTP_UNAUTHORIZED, $response->getStatusCode());
+    }
+
+    public function testPostReturnForbidden(): void
+    {
+        $response = $this->getAuthenticatedClientWith('c1b618cf-e3c0-4119-a6ee-ef1c0d325bc3')->request(
+            'POST',
+            '/clubs',
+            ['json' => $this->getValidPayload()]
+        );
+
+        $this->assertSame(Response::HTTP_FORBIDDEN, $response->getStatusCode());
+    }
+
+    private function getValidPayload(): array
+    {
+        return [
+            'name' => 'La Boule A Zéro',
+            'address' => [
+                'city' => 'Sartrouville',
+                'zipCode' => '78500',
+                'street' => '6 rue Lisse',
+            ],
+            'contact' => [
+                'emails' => ['labouleazero@gmail.com'],
+                'phoneNumbers' => ['0123456789'],
+            ],
         ];
     }
 }

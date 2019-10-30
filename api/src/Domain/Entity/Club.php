@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "get"={
  *              "normalization_context"={"groups"={SerializationGroups::CLUB_COLLECTION_READ}}
  *          },
- *          "post"
+ *          "post"={"security"="is_granted('ROLE_EDITOR')"}
  *      },
  *     itemOperations={
  *          "get"={
