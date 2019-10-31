@@ -21,7 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "get"={
  *              "normalization_context"={"groups"={SerializationGroups::CLUB_ITEM_READ}}
  *          },
- *          "put"
+ *          "put"={"security"="is_granted('ROLE_EDITOR')"}
  *     }
  * )
  * @ORM\Entity
