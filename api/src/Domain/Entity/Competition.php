@@ -14,7 +14,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  *      collectionOperations={
  *          "get"={
  *              "normalization_context"={"groups"={SerializationGroups::COMPETITION_COLLECTION_READ}}
- *          }
+ *          },
+ *          "post"={"security"="is_granted('ROLE_EDITOR')"}
  *      },
  *      itemOperations={
  *          "get"={
@@ -78,6 +79,7 @@ class Competition
      *
      * @Groups(SerializationGroups::COMPETITION_READ)
      *
+     * @Assert\NotBlank
      * @Assert\Choice(Competition::ALL_TYPES)
      */
     private $type;
@@ -87,6 +89,7 @@ class Competition
      *
      * @Groups(SerializationGroups::COMPETITION_READ)
      *
+     * @Assert\NotBlank
      * @Assert\Choice(Competition::ALL_FORMATIONS)
      */
     private $formation;
@@ -98,24 +101,26 @@ class Competition
      * @Groups(SerializationGroups::COMPETITION_READ)
      *
      * @Assert\NotBlank
-     * @Assert\Type("string")
      */
     private $club;
 
     /**
-     * @ORM\Column(type="date_immutable")
+     * @ORM\Column(type="datetimetz_immutable")
      *
      * @Groups(SerializationGroups::COMPETITION_READ)
      *
-     * @Assert\DateTime
+     * @Assert\NotBlank
      */
     private $startDate;
 
     /**
+     * Duration in day(s)
+     *
      * @ORM\Column(type="integer")
      *
      * @Groups(SerializationGroups::COMPETITION_READ)
      *
+     * @Assert\NotBlank
      * @Assert\Type("integer")
      * @Assert\GreaterThanOrEqual(Competition::MIN_DURATION)
      */
@@ -126,6 +131,7 @@ class Competition
      *
      * @Groups(SerializationGroups::COMPETITION_READ)
      *
+     * @Assert\NotBlank
      * @Assert\Choice(Competition::ALL_QUOTATIONS)
      */
     private $quotation;
@@ -140,9 +146,23 @@ class Competition
         return $this->type;
     }
 
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
     public function getFormation(): string
     {
         return $this->formation;
+    }
+
+    public function setFormation(string $formation): self
+    {
+        $this->formation = $formation;
+
+        return $this;
     }
 
     public function getClub(): Club
@@ -150,9 +170,23 @@ class Competition
         return $this->club;
     }
 
+    public function setClub(Club $club): self
+    {
+        $this->club = $club;
+
+        return $this;
+    }
+
     public function getStartDate(): \DateTimeImmutable
     {
         return $this->startDate;
+    }
+
+    public function setStartDate(\DateTimeImmutable $startDate): self
+    {
+        $this->startDate = $startDate;
+
+        return $this;
     }
 
     public function getDuration(): int
@@ -160,8 +194,22 @@ class Competition
         return $this->duration;
     }
 
+    public function setDuration(int $duration): self
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
     public function getQuotation(): string
     {
         return $this->quotation;
+    }
+
+    public function setQuotation(string $quotation): self
+    {
+        $this->quotation = $quotation;
+
+        return $this;
     }
 }
