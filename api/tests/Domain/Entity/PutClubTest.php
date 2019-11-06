@@ -139,37 +139,34 @@ class PutClubTest extends ApiTestCase
 
     public function testPutReturnUnauthorized(): void
     {
-        $response = $this->getAnonymousClient()->request(
+        $this->getAnonymousClient()->request(
             'PUT',
             '/clubs/df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1',
             ['json' => $this->getValidPayload()]
         );
-
-        $this->assertSame(Response::HTTP_UNAUTHORIZED, $response->getStatusCode());
+        $this->assertResponseStatusCodeSame(Response::HTTP_UNAUTHORIZED);
     }
 
     public function testPutReturnForbidden(): void
     {
-        $response = $this->getAuthenticatedClientWith('c1b618cf-e3c0-4119-a6ee-ef1c0d325bc3')->request(
+        $this->getAuthenticatedClientWith('c1b618cf-e3c0-4119-a6ee-ef1c0d325bc3')->request(
             'PUT',
             '/clubs/df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1',
             ['json' => $this->getValidPayload()]
         );
-
-        $this->assertSame(Response::HTTP_FORBIDDEN, $response->getStatusCode());
+        $this->assertResponseStatusCodeSame(Response::HTTP_FORBIDDEN);
     }
 
     public function testPutReturnNotFound(): void
     {
-        $response = $this->getAuthenticatedClientWith('021c6dc9-4a8e-416a-96ca-b73fed2adb35')->request(
+        $this->getAuthenticatedClientWith('021c6dc9-4a8e-416a-96ca-b73fed2adb35')->request(
             'PUT',
             '/clubs/6001a54e-e73a-4952-97c5-4351b7262cf8',
             [
                 'json' => $this->getValidPayload(),
             ]
         );
-
-        $this->assertSame(Response::HTTP_NOT_FOUND, $response->getStatusCode());
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
     private function getValidPayload(): array
