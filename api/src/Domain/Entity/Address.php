@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Domain\Serialization\SerializationGroups;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Domain\Validation\ValidationGroups;
 
 /**
  * @ORM\Embeddable

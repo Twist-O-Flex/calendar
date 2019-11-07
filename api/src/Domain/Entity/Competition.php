@@ -7,10 +7,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use App\Domain\Serialization\SerializationGroups;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Validator\Constraints as Assert;
+use App\Domain\DTO\CompetitionInput;
 
 /**
  * @ApiResource(
+ *      input=CompetitionInput::class,
  *      collectionOperations={
  *          "get"={
  *              "normalization_context"={"groups"={SerializationGroups::COMPETITION_COLLECTION_READ}}
@@ -78,9 +79,6 @@ class Competition
      * @ORM\Column(type="string")
      *
      * @Groups(SerializationGroups::COMPETITION_READ)
-     *
-     * @Assert\NotBlank
-     * @Assert\Choice(Competition::ALL_TYPES)
      */
     private $type;
 
@@ -88,9 +86,6 @@ class Competition
      * @ORM\Column(type="string")
      *
      * @Groups(SerializationGroups::COMPETITION_READ)
-     *
-     * @Assert\NotBlank
-     * @Assert\Choice(Competition::ALL_FORMATIONS)
      */
     private $formation;
 
@@ -99,8 +94,6 @@ class Competition
      * @ORM\JoinColumn(name="club_id", referencedColumnName="id")
      *
      * @Groups(SerializationGroups::COMPETITION_READ)
-     *
-     * @Assert\NotBlank
      */
     private $club;
 
@@ -108,8 +101,6 @@ class Competition
      * @ORM\Column(type="datetimetz_immutable")
      *
      * @Groups(SerializationGroups::COMPETITION_READ)
-     *
-     * @Assert\NotBlank
      */
     private $startDate;
 
@@ -119,10 +110,6 @@ class Competition
      * @ORM\Column(type="integer")
      *
      * @Groups(SerializationGroups::COMPETITION_READ)
-     *
-     * @Assert\NotBlank
-     * @Assert\Type("integer")
-     * @Assert\GreaterThanOrEqual(Competition::MIN_DURATION)
      */
     private $duration;
 
@@ -130,9 +117,6 @@ class Competition
      * @ORM\Column(type="string")
      *
      * @Groups(SerializationGroups::COMPETITION_READ)
-     *
-     * @Assert\NotBlank
-     * @Assert\Choice(Competition::ALL_QUOTATIONS)
      */
     private $quotation;
 

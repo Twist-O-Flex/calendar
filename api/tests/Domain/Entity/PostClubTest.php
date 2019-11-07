@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class PostClubTest extends ApiTestCase
 {
-    public function testPost(): void
+    public function testPostClub(): void
     {
         $response = $this->getAuthenticatedClientWith('021c6dc9-4a8e-416a-96ca-b73fed2adb35')->request(
             'POST',

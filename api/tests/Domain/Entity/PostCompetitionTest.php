@@ -39,7 +39,7 @@ class PostCompetitionTest extends ApiTestCase
         return [
             'type' => 'championship',
             'formation' => 'tri',
-            'club' => '/clubs/df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1',
+            'club' => ['id' => 'df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1'],
             'startDate' => '2019-11-06T15:08:51+01:00',
             'duration' => 2,
             'quotation' => 'tc'
