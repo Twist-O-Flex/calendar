@@ -5,8 +5,6 @@ namespace App\Domain\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Domain\Serialization\SerializationGroups;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Validator\Constraints as Assert;
-use App\Domain\Validation\ValidationGroups;
 
 /**
  * @ORM\Embeddable
@@ -17,9 +15,6 @@ class Address
      * @ORM\Column(type = "string")
      *
      * @Groups(SerializationGroups::ITEM_READ)
-     *
-     * @Assert\Type("string")
-     * @Assert\NotBlank
      */
     private $city;
 
@@ -27,9 +22,6 @@ class Address
      * @ORM\Column(type = "string")
      *
      * @Groups(SerializationGroups::ITEM_READ)
-     *
-     * @Assert\Type("string")
-     * @Assert\NotBlank
      */
     private $zipCode;
 
@@ -37,9 +29,6 @@ class Address
      * @ORM\Column(type = "string")
      *
      * @Groups(SerializationGroups::ITEM_READ)
-     *
-     * @Assert\Type("string")
-     * @Assert\NotBlank
      */
     private $street;
 

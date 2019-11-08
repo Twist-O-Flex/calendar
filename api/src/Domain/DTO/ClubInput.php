@@ -2,8 +2,6 @@
 
 namespace App\Domain\DTO;
 
-use App\Domain\Entity\Address;
-use App\Domain\Entity\Contact;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Domain\Validation\ValidationGroups;
 use App\Domain\Validation\Constraint\ClubExists;
@@ -25,7 +23,7 @@ final class ClubInput
     public $name;
 
     /**
-     * @var Address
+     * @var AddressInput
      *
      * @Assert\NotNull(groups=ValidationGroups::CLUB_WRITE)
      * @Assert\Valid
@@ -33,7 +31,7 @@ final class ClubInput
     public $address;
 
     /**
-     * @var Contact
+     * @var ContactInput
      *
      * @Assert\NotNull(groups=ValidationGroups::CLUB_WRITE)
      * @Assert\Valid

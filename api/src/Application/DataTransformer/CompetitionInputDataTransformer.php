@@ -6,19 +6,19 @@ use ApiPlatform\Core\DataTransformer\DataTransformerInterface;
 use ApiPlatform\Core\Validator\ValidatorInterface;
 use App\Domain\DTO\CompetitionInput;
 use App\Domain\Entity\Competition;
-use App\Domain\Repository\ClubRepository;
+use App\Domain\Factory\CompetitionFactory;
 use App\Domain\Validation\ValidationGroups;
 use Webmozart\Assert\Assert;
 
 class CompetitionInputDataTransformer implements DataTransformerInterface
 {
     private $validator;
-    private $clubRepository;
+    private $competitionFactory;
 
-    public function __construct(ValidatorInterface $validator, ClubRepository $clubRepository)
+    public function __construct(ValidatorInterface $validator, CompetitionFactory $competitionFactory)
     {
         $this->validator = $validator;
-        $this->clubRepository = $clubRepository;
+        $this->competitionFactory = $competitionFactory;
     }
 
     public function transform($object, string $to, array $context = [])
@@ -31,13 +31,7 @@ class CompetitionInputDataTransformer implements DataTransformerInterface
             ['groups' => array_merge(['Default'], ValidationGroups::COMPETITION_WRITE)]
         );
 
-        return (new Competition())
-            ->setType($object->type)
-            ->setFormation($object->formation)
-            ->setClub($this->clubRepository->find($object->club->id))
-            ->setStartDate(new \DateTimeImmutable($object->startDate))
-            ->setDuration($object->duration)
-            ->setQuotation($object->quotation);
+        return $this->competitionFactory->fromCompetitionInput($object);
     }
 
     public function supportsTransformation($data, string $to, array $context = []): bool
