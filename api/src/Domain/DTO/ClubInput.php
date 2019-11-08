@@ -11,8 +11,6 @@ use App\Domain\Validation\Constraint\ClubExists;
 final class ClubInput
 {
     /**
-     * @var string
-     *
      * @Assert\NotNull(groups=ValidationGroups::COMPETITION_WRITE)
      * @Assert\NotBlank(groups=ValidationGroups::COMPETITION_WRITE)
      * @Assert\Uuid(groups=ValidationGroups::COMPETITION_WRITE)
@@ -21,9 +19,7 @@ final class ClubInput
     public $id;
 
     /**
-     * @var string
-     *
-     * @Assert\NotNull(groups=ValidationGroups::CLUB_WRITE)
+     * @Assert\Type("string")
      * @Assert\NotBlank(groups=ValidationGroups::CLUB_WRITE)
      */
     public $name;

@@ -9,5 +9,5 @@ use Symfony\Component\Validator\Constraint;
  */
 class ClubExists extends Constraint
 {
-    public $message = "The club with id: {{ id }} doesn't exist";
+    public $message = "The club with id: {{ id }} doesn't exist.";
 }

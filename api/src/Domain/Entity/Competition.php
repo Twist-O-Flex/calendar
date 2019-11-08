@@ -21,7 +21,8 @@ use App\Domain\DTO\CompetitionInput;
  *      itemOperations={
  *          "get"={
  *              "normalization_context"={"groups"={SerializationGroups::COMPETITION_ITEM_READ}}
- *          }
+ *          },
+ *          "put"={"security"="is_granted('ROLE_EDITOR')"}
  *      }
  * )
  * @ORM\Entity

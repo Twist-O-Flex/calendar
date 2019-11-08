@@ -5,6 +5,7 @@ namespace App\Tests;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test;
 use App\Domain\Repository\UserRepository;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Webmozart\Assert\Assert;
 
 class ApiTestCase extends Test\ApiTestCase
 {
@@ -30,5 +31,16 @@ class ApiTestCase extends Test\ApiTestCase
         $this->assertNotNull($user = $this->get("test." . UserRepository::class)->find($userUuid));
 
         return new JwtClient(self::createClient(), $this->get("lexik_jwt_authentication.jwt_manager")->create($user));
+    }
+
+    public function formatViolations(array $violations): array
+    {
+        $formatted = [];
+
+        foreach ($violations as $violation) {
+            $formatted[$violation['propertyPath']][] = $violation['message'];
+        }
+
+        return $formatted;
     }
 }

@@ -5,20 +5,20 @@ namespace App\Tests\Domain\Entity;
 use App\Tests\ApiTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
-class PostCompetitionTest extends ApiTestCase
+class PutCompetitionTest extends ApiTestCase
 {
     /**
      * @dataProvider validPayloadProvider
      */
-    public function testPost(array $payload): void
+    public function testPut(array $payload): void
     {
         $response = $this->getAuthenticatedClientWith('021c6dc9-4a8e-416a-96ca-b73fed2adb35')->request(
-            'POST',
-            '/competitions',
+            'PUT',
+            '/competitions/7d853409-ff26-4097-826e-e1f78f5a5a01',
             ['json' => $payload]
         );
 
-        $this->assertSame(Response::HTTP_CREATED, $response->getStatusCode());
+        $this->assertSame(Response::HTTP_OK, $response->getStatusCode());
         $this->assertJson($content = $response->getContent());
         $content = \Safe\json_decode($content, true);
 
@@ -26,27 +26,27 @@ class PostCompetitionTest extends ApiTestCase
         $this->assertArrayHasKey('@id', $content);
         $this->assertArrayHasKey('@type', $content);
         $this->assertArrayHasKey('id', $content);
-        $this->assertSame('championship', $content['type']);
-        $this->assertSame('tri', $content['formation']);
+        $this->assertSame('national', $content['type']);
+        $this->assertSame('dou', $content['formation']);
         $this->assertSame('/clubs/df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1', $content['club']);
         $this->assertEquals(
-            new \DateTimeImmutable('2019-11-06T15:08:51+01:00'),
+            new \DateTimeImmutable('2019-11-09T17:08:51+01:00'),
             new \DateTimeImmutable($content['startDate'])
         );
-        $this->assertSame(2, $content['duration']);
-        $this->assertSame('tc', $content['quotation']);
+        $this->assertSame(5, $content['duration']);
+        $this->assertSame('pro', $content['quotation']);
     }
 
     public function validPayloadProvider(): \Generator
     {
         yield [
             [
-                'type' => 'championship',
-                'formation' => 'tri',
+                'type' => 'national',
+                'formation' => 'dou',
                 'club' => ['id' => 'df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1'],
-                'startDate' => '2019-11-06T15:08:51+01:00',
-                'duration' => 2,
-                'quotation' => 'tc',
+                'startDate' => '2019-11-09T17:08:51+01:00',
+                'duration' => 5,
+                'quotation' => 'pro',
             ],
         ];
     }
@@ -54,11 +54,11 @@ class PostCompetitionTest extends ApiTestCase
     /**
      * @dataProvider invalidPayloadProvider
      */
-    public function testPostCompetitionWithInvalidPayload(array $payload, callable $assert): void
+    public function testPutCompetitionWithInvalidPayload(string $competitionId, array $payload, callable $assert): void
     {
         $response = $this->getAuthenticatedClientWith('021c6dc9-4a8e-416a-96ca-b73fed2adb35')->request(
-            'POST',
-            '/competitions',
+            'PUT',
+            "/competitions/$competitionId",
             [
                 'json' => $payload,
             ]
@@ -76,6 +76,7 @@ class PostCompetitionTest extends ApiTestCase
     public function invalidPayloadProvider(): \Generator
     {
         yield [
+            '7d853409-ff26-4097-826e-e1f78f5a5a01',
             [
                 [],
             ],
@@ -95,6 +96,7 @@ class PostCompetitionTest extends ApiTestCase
         ];
 
         yield [
+            '7d853409-ff26-4097-826e-e1f78f5a5a01',
             [
                 [
                     'type' => '',
@@ -121,6 +123,7 @@ class PostCompetitionTest extends ApiTestCase
         ];
 
         yield [
+            '7d853409-ff26-4097-826e-e1f78f5a5a01',
             [
                 'type' => 'foo',
                 'formation' => 'bar',
@@ -145,6 +148,7 @@ class PostCompetitionTest extends ApiTestCase
         ];
 
         yield [
+            '7d853409-ff26-4097-826e-e1f78f5a5a01',
             [
                 'type' => 'championship',
                 'formation' => 'tri',
@@ -157,33 +161,5 @@ class PostCompetitionTest extends ApiTestCase
                 $this->assertSame(["duration" => ["This value should be of type integer."]], $violations);
             }
         ];
-    }
-
-    /**
-     * @dataProvider validPayloadProvider
-     */
-    public function testPostReturnUnauthorized(array $payload): void
-    {
-        $response = $this->getAnonymousClient()->request(
-            'POST',
-            '/competitions',
-            ['json' => $payload]
-        );
-
-        $this->assertSame(Response::HTTP_UNAUTHORIZED, $response->getStatusCode());
-    }
-
-    /**
-     * @dataProvider validPayloadProvider
-     */
-    public function testPostReturnForbidden(array $payload): void
-    {
-        $response = $this->getAuthenticatedClientWith('c1b618cf-e3c0-4119-a6ee-ef1c0d325bc3')->request(
-            'POST',
-            '/competitions',
-            ['json' => $payload]
-        );
-
-        $this->assertSame(Response::HTTP_FORBIDDEN, $response->getStatusCode());
     }
 }
