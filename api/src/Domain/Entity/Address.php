@@ -2,8 +2,8 @@
 
 namespace App\Domain\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use App\Domain\Serialization\SerializationGroups;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -12,21 +12,21 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Address
 {
     /**
-     * @ORM\Column(type = "string")
+     * @ORM\Column(type="string")
      *
      * @Groups(SerializationGroups::ITEM_READ)
      */
     private $city;
 
     /**
-     * @ORM\Column(type = "string")
+     * @ORM\Column(type="string")
      *
      * @Groups(SerializationGroups::ITEM_READ)
      */
     private $zipCode;
 
     /**
-     * @ORM\Column(type = "string")
+     * @ORM\Column(type="string")
      *
      * @Groups(SerializationGroups::ITEM_READ)
      */

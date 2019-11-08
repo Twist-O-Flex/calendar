@@ -19,10 +19,10 @@ test-quality:
 	docker-compose run --rm -v "${PWD}":/app phpstan analyse -l 4 -c phpstan.neon /app/src /app/tests
 
 test-cs-php:
-	docker-compose run --rm -v "${PWD}":/app phpcs --standard=PSR12 src/ tests/
+	docker-compose run -v "${PWD}":/app phpcs fix --config=.php_cs --dry-run --diff --allow-risky=yes
 
 fix-cs-php:
-	docker-compose run --rm -v "${PWD}":/app phpcbf --standard=PSR12 src/ tests/
+	docker-compose run -v "${PWD}":/app phpcs fix --config=.php_cs --diff --allow-risky=yes
 
 fixtures: run-pgsql
 	bin/console hautelook:fixtures:load --no-interaction

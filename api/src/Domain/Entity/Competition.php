@@ -3,27 +3,27 @@
 namespace App\Domain\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Domain\DTO\CompetitionInput;
+use App\Domain\Serialization\SerializationGroups;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
-use App\Domain\Serialization\SerializationGroups;
 use Symfony\Component\Serializer\Annotation\Groups;
-use App\Domain\DTO\CompetitionInput;
 
 /**
  * @ApiResource(
- *      input=CompetitionInput::class,
- *      collectionOperations={
- *          "get"={
- *              "normalization_context"={"groups"={SerializationGroups::COMPETITION_COLLECTION_READ}}
- *          },
- *          "post"={"security"="is_granted('ROLE_EDITOR')"}
- *      },
- *      itemOperations={
- *          "get"={
- *              "normalization_context"={"groups"={SerializationGroups::COMPETITION_ITEM_READ}}
- *          },
- *          "put"={"security"="is_granted('ROLE_EDITOR')"}
- *      }
+ *     input=CompetitionInput::class,
+ *     collectionOperations={
+ *         "get" = {
+ *             "normalization_context" = {"groups" = {SerializationGroups::COMPETITION_COLLECTION_READ}}
+ *         },
+ *         "post" = {"security" = "is_granted('ROLE_EDITOR')"}
+ *     },
+ *     itemOperations={
+ *         "get" = {
+ *             "normalization_context" = {"groups" = {SerializationGroups::COMPETITION_ITEM_READ}}
+ *         },
+ *         "put" = {"security" = "is_granted('ROLE_EDITOR')"}
+ *     }
  * )
  * @ORM\Entity
  * @ORM\Table(name="competition")

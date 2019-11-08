@@ -2,8 +2,8 @@
 
 namespace App\Domain\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use App\Domain\Serialization\SerializationGroups;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -13,25 +13,25 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Contact
 {
     /**
-     * @ORM\Column(type="json_document", options={"jsonb": true})
+     * @ORM\Column(type="json_document", options={"jsonb" = true})
      *
      * @Groups(SerializationGroups::READ)
      *
      * @Assert\NotBlank
      * @Assert\All({
-     *      @Assert\Email
+     *     @Assert\Email
      * })
      */
     private $emails;
 
     /**
-     * @ORM\Column(type="json_document", options={"jsonb": true})
+     * @ORM\Column(type="json_document", options={"jsonb" = true})
      *
      * @Groups(SerializationGroups::READ)
      *
      * @Assert\NotBlank
      * @Assert\All({
-     *      @Assert\Regex(pattern="#^(?:\+33|0)[0-9]{9}$#", message="This is not a valid phone number.")
+     *     @Assert\Regex(pattern="#^(?:\+33|0)[0-9]{9}$#", message="This is not a valid phone number.")
      * })
      */
     private $phoneNumbers;

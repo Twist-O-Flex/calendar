@@ -9,7 +9,7 @@ class ContactInput
     /**
      * @Assert\NotBlank
      * @Assert\All({
-     *      @Assert\Email
+     *     @Assert\Email
      * })
      */
     public $emails;
@@ -17,7 +17,7 @@ class ContactInput
     /**
      * @Assert\NotBlank
      * @Assert\All({
-     *      @Assert\Regex(pattern="#^(?:\+33|0)[0-9]{9}$#", message="This is not a valid phone number.")
+     *     @Assert\Regex(pattern="#^(?:\+33|0)[0-9]{9}$#", message="This is not a valid phone number.")
      * })
      */
     public $phoneNumbers;

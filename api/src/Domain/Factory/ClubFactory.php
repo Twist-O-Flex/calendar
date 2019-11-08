@@ -21,7 +21,6 @@ class ClubFactory
         return (new Club())
             ->setName($clubInput->name)
             ->setContact($this->contactFactory->fromContactInput($clubInput->contact))
-            ->setAddress($this->addressFactory->fromAddressInput($clubInput->address))
-        ;
+            ->setAddress($this->addressFactory->fromAddressInput($clubInput->address));
     }
 }

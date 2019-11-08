@@ -25,18 +25,18 @@ class GetCompetitionItemTest extends ApiTestCase
                     "@type" => "Club",
                     "id" => "0b17ca3e-490b-3ddb-aa78-35b4ce668dc0",
                     "address" => [
-                    "city" => "Nikkishire",
-                    "zipCode" => "33282",
-                    "street" => "4545 Streich Views Suite 225",
+                        "city" => "Nikkishire",
+                        "zipCode" => "33282",
+                        "street" => "4545 Streich Views Suite 225",
                     ],
                     "contact" => [
-                    "emails" => [
-                    0 => "morissette.erna@example.org",
-                    ],
-                    "phoneNumbers" =>  [
-                    0 => "+4466675661846",
-                    1 => "+2320272534524",
-                    ],
+                        "emails" => [
+                            0 => "morissette.erna@example.org",
+                        ],
+                        "phoneNumbers" =>  [
+                            0 => "+4466675661846",
+                            1 => "+2320272534524",
+                        ],
                     ],
                 ],
                 "startDate" => "2019-10-05T00:00:00+00:00",

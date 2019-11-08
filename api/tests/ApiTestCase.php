@@ -5,7 +5,6 @@ namespace App\Tests;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test;
 use App\Domain\Repository\UserRepository;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
-use Webmozart\Assert\Assert;
 
 class ApiTestCase extends Test\ApiTestCase
 {

@@ -11,7 +11,6 @@ class ContactFactory
     {
         return (new Contact())
             ->setEmails($contactInput->emails)
-            ->setPhoneNumbers($contactInput->phoneNumbers)
-        ;
+            ->setPhoneNumbers($contactInput->phoneNumbers);
     }
 }

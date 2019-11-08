@@ -28,7 +28,7 @@ class CompetitionInputDataTransformer implements DataTransformerInterface
 
         $this->validator->validate(
             $object,
-            ['groups' => array_merge(['Default'], ValidationGroups::COMPETITION_WRITE)]
+            ['groups' => \array_merge(['Default'], ValidationGroups::COMPETITION_WRITE)]
         );
 
         return $this->competitionFactory->fromCompetitionInput($object);

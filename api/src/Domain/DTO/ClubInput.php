@@ -2,9 +2,9 @@
 
 namespace App\Domain\DTO;
 
-use Symfony\Component\Validator\Constraints as Assert;
-use App\Domain\Validation\ValidationGroups;
 use App\Domain\Validation\Constraint\ClubExists;
+use App\Domain\Validation\ValidationGroups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 final class ClubInput
 {

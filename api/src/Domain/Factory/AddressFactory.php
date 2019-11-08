@@ -12,7 +12,6 @@ class AddressFactory
         return (new Address())
             ->setStreet($addressInput->street)
             ->setCity($addressInput->city)
-            ->setZipCode($addressInput->zipCode)
-        ;
+            ->setZipCode($addressInput->zipCode);
     }
 }

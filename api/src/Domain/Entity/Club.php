@@ -3,26 +3,26 @@
 namespace App\Domain\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Domain\DTO\ClubInput;
+use App\Domain\Serialization\SerializationGroups;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
-use App\Domain\Serialization\SerializationGroups;
 use Symfony\Component\Serializer\Annotation\Groups;
-use App\Domain\DTO\ClubInput;
 
 /**
  * @ApiResource(
  *     input=ClubInput::class,
  *     collectionOperations={
- *          "get"={
- *              "normalization_context"={"groups"={SerializationGroups::CLUB_COLLECTION_READ}}
- *          },
- *          "post"={"security"="is_granted('ROLE_EDITOR')"}
- *      },
+ *         "get" = {
+ *             "normalization_context" = {"groups" = {SerializationGroups::CLUB_COLLECTION_READ}}
+ *         },
+ *         "post" = {"security" = "is_granted('ROLE_EDITOR')"}
+ *     },
  *     itemOperations={
- *          "get"={
- *              "normalization_context"={"groups"={SerializationGroups::CLUB_ITEM_READ}}
- *          },
- *          "put"={"security"="is_granted('ROLE_EDITOR')"}
+ *         "get" = {
+ *             "normalization_context" = {"groups" = {SerializationGroups::CLUB_ITEM_READ}}
+ *         },
+ *         "put" = {"security" = "is_granted('ROLE_EDITOR')"}
  *     }
  * )
  * @ORM\Entity

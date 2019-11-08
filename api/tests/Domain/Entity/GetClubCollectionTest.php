@@ -26,9 +26,9 @@ class GetClubCollectionTest extends ApiTestCase
             $this->assertArrayHasKey("@type", $club);
             $this->assertArrayHasKey("id", $club);
             $this->assertArrayHasKey("name", $club);
-            $this->assertSame(4, count($club));
+            $this->assertCount(4, $club);
         }
 
-        $this->assertSame(3, count($content["hydra:member"]));
+        $this->assertCount(3, $content["hydra:member"]);
     }
 }

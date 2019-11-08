@@ -4,14 +4,14 @@ RUN apk add --no-cache \
     php7 \
     php7-phar \
     php7-tokenizer \
-    php7-xmlwriter \
-    php7-simplexml
+    php7-json \
+    php7-mbstring
 
 RUN apk add --no-cache \
     curl
 
-RUN curl -s https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar > /usr/local/bin/phpcs \
-    && chmod +x /usr/local/bin/phpcs
+RUN curl -L -s https://cs.symfony.com/download/php-cs-fixer-v2.phar -o /usr/local/bin/phpcs \
+    && chmod a+x /usr/local/bin/phpcs
 
 RUN apk del curl
 

@@ -2,8 +2,8 @@
 
 namespace App\Domain\DTO;
 
-use Symfony\Component\Validator\Constraints as Assert;
 use App\Domain\Entity\Competition;
+use Symfony\Component\Validator\Constraints as Assert;
 
 final class CompetitionInput
 {
