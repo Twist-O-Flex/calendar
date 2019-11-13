@@ -10,7 +10,7 @@ class PutClubTest extends ApiTestCase
     /**
      * @dataProvider validPayloadProvider
      */
-    public function testPut(array $payload): void
+    public function testPutClub(array $payload): void
     {
         $response = $this->getAuthenticatedClientWith('021c6dc9-4a8e-416a-96ca-b73fed2adb35')->request(
             'PUT',
@@ -142,7 +142,7 @@ class PutClubTest extends ApiTestCase
     /**
      * @dataProvider validPayloadProvider
      */
-    public function testPutReturnUnauthorized(array $payload): void
+    public function testPutClubReturnUnauthorized(array $payload): void
     {
         $this->getAnonymousClient()->request(
             'PUT',
@@ -155,7 +155,7 @@ class PutClubTest extends ApiTestCase
     /**
      * @dataProvider validPayloadProvider
      */
-    public function testPutReturnForbidden(array $payload): void
+    public function testPutClubReturnForbidden(array $payload): void
     {
         $this->getAuthenticatedClientWith('c1b618cf-e3c0-4119-a6ee-ef1c0d325bc3')->request(
             'PUT',
@@ -168,7 +168,7 @@ class PutClubTest extends ApiTestCase
     /**
      * @dataProvider validPayloadProvider
      */
-    public function testPutReturnNotFound(array $payload): void
+    public function testPutClubReturnNotFound(array $payload): void
     {
         $this->getAuthenticatedClientWith('021c6dc9-4a8e-416a-96ca-b73fed2adb35')->request(
             'PUT',

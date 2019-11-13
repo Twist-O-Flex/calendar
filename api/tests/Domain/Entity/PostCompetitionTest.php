@@ -10,7 +10,7 @@ class PostCompetitionTest extends ApiTestCase
     /**
      * @dataProvider validPayloadProvider
      */
-    public function testPost(array $payload): void
+    public function testPostCompetition(array $payload): void
     {
         $response = $this->getAuthenticatedClientWith('021c6dc9-4a8e-416a-96ca-b73fed2adb35')->request(
             'POST',
@@ -162,7 +162,7 @@ class PostCompetitionTest extends ApiTestCase
     /**
      * @dataProvider validPayloadProvider
      */
-    public function testPostReturnUnauthorized(array $payload): void
+    public function testPostCompetitionReturnUnauthorized(array $payload): void
     {
         $response = $this->getAnonymousClient()->request(
             'POST',
@@ -176,7 +176,7 @@ class PostCompetitionTest extends ApiTestCase
     /**
      * @dataProvider validPayloadProvider
      */
-    public function testPostReturnForbidden(array $payload): void
+    public function testPostCompetitionReturnForbidden(array $payload): void
     {
         $response = $this->getAuthenticatedClientWith('c1b618cf-e3c0-4119-a6ee-ef1c0d325bc3')->request(
             'POST',

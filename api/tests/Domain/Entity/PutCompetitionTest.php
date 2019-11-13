@@ -162,4 +162,43 @@ class PutCompetitionTest extends ApiTestCase
             }
         ];
     }
+
+    /**
+     * @dataProvider validPayloadProvider
+     */
+    public function testPutCompetitionReturnUnauthorized(array $payload): void
+    {
+        $this->getAnonymousClient()->request(
+            'PUT',
+            '/competitions/7d853409-ff26-4097-826e-e1f78f5a5a01',
+            ['json' => $payload]
+        );
+        $this->assertResponseStatusCodeSame(Response::HTTP_UNAUTHORIZED);
+    }
+
+    /**
+     * @dataProvider validPayloadProvider
+     */
+    public function testPutCompetitionReturnForbidden(array $payload): void
+    {
+        $this->getAuthenticatedClientWith('c1b618cf-e3c0-4119-a6ee-ef1c0d325bc3')->request(
+            'PUT',
+            '/competitions/7d853409-ff26-4097-826e-e1f78f5a5a01',
+            ['json' => $payload]
+        );
+        $this->assertResponseStatusCodeSame(Response::HTTP_FORBIDDEN);
+    }
+
+    /**
+     * @dataProvider validPayloadProvider
+     */
+    public function testPutCompetitionReturnNotFound(array $payload): void
+    {
+        $this->getAuthenticatedClientWith('021c6dc9-4a8e-416a-96ca-b73fed2adb35')->request(
+            'PUT',
+            '/competitions/4153e5bf-cba7-4d55-81ff-9983d7323c52',
+            ['json' => $payload]
+        );
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+    }
 }
