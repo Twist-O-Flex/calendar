@@ -18,7 +18,7 @@ class GetCompetitionItemTest extends ApiTestCase
                 "@id" => "/competitions/7d853409-ff26-4097-826e-e1f78f5a5a01",
                 "@type" => "Competition",
                 "id" => "7d853409-ff26-4097-826e-e1f78f5a5a01",
-                "type" => "national",
+                "category" => "national",
                 "formation" => "tri",
                 "club" => [
                     "@id" => "/clubs/df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1",

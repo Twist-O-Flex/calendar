@@ -3,15 +3,16 @@
 namespace App\Domain\DTO;
 
 use App\Domain\Entity\Competition;
+use App\Domain\Type\CompetitionCategory;
 use Symfony\Component\Validator\Constraints as Assert;
 
 final class CompetitionInput
 {
     /**
      * @Assert\NotBlank
-     * @Assert\Choice(Competition::ALL_TYPES)
+     * @Assert\Choice(CompetitionCategory::ALL)
      */
-    public $type;
+    public $category;
 
     /**
      * @Assert\NotBlank

@@ -26,7 +26,7 @@ class PutCompetitionTest extends ApiTestCase
         $this->assertArrayHasKey('@id', $content);
         $this->assertArrayHasKey('@type', $content);
         $this->assertArrayHasKey('id', $content);
-        $this->assertSame('national', $content['type']);
+        $this->assertSame('national', $content['category']);
         $this->assertSame('dou', $content['formation']);
         $this->assertSame('/clubs/df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1', $content['club']);
         $this->assertEquals(
@@ -41,7 +41,7 @@ class PutCompetitionTest extends ApiTestCase
     {
         yield [
             [
-                'type' => 'national',
+                'category' => 'national',
                 'formation' => 'dou',
                 'club' => ['id' => 'df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1'],
                 'startDate' => '2019-11-09T17:08:51+01:00',
@@ -83,7 +83,7 @@ class PutCompetitionTest extends ApiTestCase
             function (array $violations) {
                 $this->assertSame(
                     [
-                        "type" => ["This value should not be blank."],
+                        "category" => ["This value should not be blank."],
                         "formation" => ["This value should not be blank."],
                         "club" => ["This value should not be blank."],
                         "startDate" => ["This value should not be blank."],
@@ -99,7 +99,7 @@ class PutCompetitionTest extends ApiTestCase
             '7d853409-ff26-4097-826e-e1f78f5a5a01',
             [
                 [
-                    'type' => '',
+                    'category' => '',
                     'formation' => '',
                     'club' => '',
                     'startDate' => '',
@@ -110,7 +110,7 @@ class PutCompetitionTest extends ApiTestCase
             function (array $violations) {
                 $this->assertSame(
                     [
-                        "type" => ["This value should not be blank."],
+                        "category" => ["This value should not be blank."],
                         "formation" => ["This value should not be blank."],
                         "club" => ["This value should not be blank."],
                         "startDate" => ["This value should not be blank."],
@@ -125,7 +125,7 @@ class PutCompetitionTest extends ApiTestCase
         yield [
             '7d853409-ff26-4097-826e-e1f78f5a5a01',
             [
-                'type' => 'foo',
+                'category' => 'foo',
                 'formation' => 'bar',
                 'club' => ['id' => '0008964b-81e0-4cb6-a404-62081a76cea1'],
                 'startDate' => '2019-11-06',
@@ -135,7 +135,7 @@ class PutCompetitionTest extends ApiTestCase
             function (array $violations) {
                 $this->assertSame(
                     [
-                        "type" => ["The value you selected is not a valid choice."],
+                        "category" => ["The value you selected is not a valid choice."],
                         "formation" => ["The value you selected is not a valid choice."],
                         "club.id" => ["The club with id: 0008964b-81e0-4cb6-a404-62081a76cea1 doesn't exist."],
                         "startDate" => ["This value is not a valid datetime."],
@@ -150,7 +150,7 @@ class PutCompetitionTest extends ApiTestCase
         yield [
             '7d853409-ff26-4097-826e-e1f78f5a5a01',
             [
-                'type' => 'championship',
+                'category' => 'championship',
                 'formation' => 'tri',
                 'club' => ['id' => 'df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1'],
                 'startDate' => '2019-11-06T15:08:51+01:00',

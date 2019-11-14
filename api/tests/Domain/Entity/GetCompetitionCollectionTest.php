@@ -24,7 +24,7 @@ class GetCompetitionCollectionTest extends ApiTestCase
             $this->assertArrayHasKey("@id", $competition);
             $this->assertArrayHasKey("@type", $competition);
             $this->assertArrayHasKey("id", $competition);
-            $this->assertArrayHasKey("type", $competition);
+            $this->assertArrayHasKey("category", $competition);
             $this->assertArrayHasKey("formation", $competition);
 
             $this->assertArrayHasKey("club", $competition);
