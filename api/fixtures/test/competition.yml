@@ -16,3 +16,30 @@ App\Domain\Entity\Competition:
     startDate: <(\DateTimeImmutable::createFromFormat(DATE_ATOM, '2019-10-05T00:00:00+00:00'))>
     duration: 1
     quotation: 'tc'
+
+  competition_{12..15}:
+    id: <uuid()>
+    type: 'tournament'
+    formation: 'dou'
+    club: '@club_11'
+    startDate: <dateTimeImmutableThisMonth()>
+    duration: 1
+    quotation: 'tc'
+
+  competition_{16..19}:
+    id: <uuid()>
+    type: 'grand_prix'
+    formation: 'tri'
+    club: '@club_12'
+    startDate: <dateTimeImmutableThisMonth()>
+    duration: 2
+    quotation: 'tc'
+
+  competition_20:
+    id: <uuid()>
+    type: 'championship'
+    formation: 'tat'
+    club: '@club_1'
+    startDate: <dateTimeImmutableThisMonth()>
+    duration: 1
+    quotation: 'pro'

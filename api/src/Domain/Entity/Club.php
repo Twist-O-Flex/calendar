@@ -27,7 +27,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *         "put" = {"security" = "is_granted('ROLE_EDITOR')"}
  *     }
  * )
- * @ApiFilter(SearchFilter::class, properties={"name" = "ipartial", "address.city" = "istart", "address.zipCode" = "start"})
+ * @ApiFilter(
+ *     SearchFilter::class,
+ *     properties={"name" = "ipartial", "address.city" = "istart", "address.zipCode" = "start"}
+ * )
  * @ORM\Entity
  * @ORM\Table(
  *     name="club",

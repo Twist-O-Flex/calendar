@@ -2,7 +2,9 @@
 
 namespace App\Domain\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Domain\DTO\CompetitionInput;
 use App\Domain\Serialization\SerializationGroups;
 use Doctrine\ORM\Mapping as ORM;
@@ -26,7 +28,24 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     }
  * )
  * @ORM\Entity
- * @ORM\Table(name="competition")
+ * @ORM\Table(
+ *     name="competition",
+ *     indexes={
+ *         @ORM\Index(name="type_idx", columns={"type"}),
+ *         @ORM\Index(name="formation_idx", columns={"formation"}),
+ *         @ORM\Index(name="club_idx", columns={"club_id"}),
+ *         @ORM\Index(name="quotation_idx", columns={"quotation"}),
+ *         @ORM\Index(name="quotation_formation_idx", columns={"quotation", "formation"}),
+ *         @ORM\Index(name="type_formation_idx", columns={"type", "formation"}),
+ *         @ORM\Index(name="type_formation_quotation_idx", columns={"type", "formation", "quotation"}),
+ *         @ORM\Index(name="type_formation_club_idx", columns={"type", "formation", "club_id"}),
+ *         @ORM\Index(name="type_formation_quotation_club_idx", columns={"type", "formation", "quotation", "club_id"})
+ *     }
+ * )
+ * @ApiFilter(
+ *     SearchFilter::class,
+ *     properties={"type" = "exact", "formation" = "exact", "club.id" = "exact", "quotation" = "exact"}
+ * )
  */
 class Competition
 {
