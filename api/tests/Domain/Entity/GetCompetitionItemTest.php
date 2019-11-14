@@ -21,21 +21,22 @@ class GetCompetitionItemTest extends ApiTestCase
                 "type" => "national",
                 "formation" => "tri",
                 "club" => [
-                    "@id" => "/clubs/0b17ca3e-490b-3ddb-aa78-35b4ce668dc0",
+                    "@id" => "/clubs/df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1",
                     "@type" => "Club",
-                    "id" => "0b17ca3e-490b-3ddb-aa78-35b4ce668dc0",
+                    "id" => "df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1",
+                    "name" => "Boule luisante",
                     "address" => [
-                        "city" => "Nikkishire",
-                        "zipCode" => "33282",
-                        "street" => "4545 Streich Views Suite 225",
+                        "city" => "Sartrouville",
+                        "zipCode" => "78500",
+                        "street" => "4 rue de la pouille",
                     ],
                     "contact" => [
                         "emails" => [
-                            0 => "morissette.erna@example.org",
+                            "toto@example.com",
+                            "tutu@example.com"
                         ],
                         "phoneNumbers" =>  [
-                            0 => "+4466675661846",
-                            1 => "+2320272534524",
+                            '+9855562307762'
                         ],
                     ],
                 ],

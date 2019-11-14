@@ -19,7 +19,7 @@ class GetClubItemTest extends ApiTestCase
                 '@id' => '/clubs/df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1',
                 '@type' => 'Club',
                 'id' => 'df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1',
-                'name' => 'Kaboum',
+                'name' => 'Boule luisante',
                 'address' => [
                     'city' => 'Sartrouville',
                     'zipCode' => '78500',

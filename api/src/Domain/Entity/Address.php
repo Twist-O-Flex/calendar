@@ -14,14 +14,14 @@ class Address
     /**
      * @ORM\Column(type="string")
      *
-     * @Groups(SerializationGroups::ITEM_READ)
+     * @Groups(SerializationGroups::READ)
      */
     private $city;
 
     /**
      * @ORM\Column(type="string")
      *
-     * @Groups(SerializationGroups::ITEM_READ)
+     * @Groups(SerializationGroups::READ)
      */
     private $zipCode;
 

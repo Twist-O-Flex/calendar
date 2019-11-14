@@ -24,6 +24,11 @@ App\Domain\Entity\Address:
     zipCode: '78500'
     street: '4 rue de la pouille'
 
+  address_12:
+    city: 'Maison-Laffitte'
+    zipCode: '78600'
+    street: '1 rue du Cheval'
+
 App\Domain\Entity\Club:
   club_{1..10}:
     id: <uuid()>
@@ -32,6 +37,11 @@ App\Domain\Entity\Club:
     address: '@address_<current()>'
   club_11:
     id: <((new \Ramsey\Uuid\UuidFactory())->fromString('df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1'))>
-    name: 'Kaboum'
+    name: 'Boule luisante'
     contact: '@contact_11'
     address: '@address_11'
+  club_12:
+    id: <((new \Ramsey\Uuid\UuidFactory())->fromString('a2782b47-3147-445d-9341-a2548a0c3e33'))>
+    name: 'La Boule Dorée'
+    contact: '@contact_1'
+    address: '@address_12'
