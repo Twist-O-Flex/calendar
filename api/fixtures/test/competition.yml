@@ -1,7 +1,7 @@
 App\Domain\Entity\Competition:
   competition_{1..10}:
     id: <uuid()>
-    category: <randomCompetitionCategory()>
+    type: <randomCompetitionType()>
     formation: <randomCompetitionFormation()>
     club: '@club_<current()>'
     startDate: <dateTimeImmutableThisMonth()>
@@ -10,7 +10,7 @@ App\Domain\Entity\Competition:
 
   competition_11:
     id: <((new \Ramsey\Uuid\UuidFactory())->fromString('7d853409-ff26-4097-826e-e1f78f5a5a01'))>
-    category: 'national'
+    type: 'national'
     formation: 'tri'
     club: '@club_11'
     startDate: <(\DateTimeImmutable::createFromFormat(DATE_ATOM, '2019-10-05T00:00:00+00:00'))>

@@ -21,7 +21,7 @@ class CompetitionFactory
         Assert::notNull($club = $this->clubRepository->find($competitionInput->club->id));
 
         return (new Competition())
-            ->setCategory($competitionInput->category)
+            ->setType($competitionInput->type)
             ->setFormation($competitionInput->formation)
             ->setClub($club)
             ->setStartDate(new \DateTimeImmutable($competitionInput->startDate))

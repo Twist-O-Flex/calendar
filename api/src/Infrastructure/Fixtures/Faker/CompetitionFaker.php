@@ -3,14 +3,13 @@
 namespace App\Infrastructure\Fixtures\Faker;
 
 use App\Domain\Entity\Competition;
-use App\Domain\Type\CompetitionCategory;
 use Faker\Provider\Base;
 
 final class CompetitionFaker extends Base
 {
-    public static function randomCompetitionCategory(): string
+    public static function randomCompetitionType(): string
     {
-        return CompetitionCategory::ALL[\array_rand(CompetitionCategory::ALL)];
+        return Competition::ALL_TYPES[\array_rand(Competition::ALL_TYPES)];
     }
 
     public static function randomCompetitionFormation(): string

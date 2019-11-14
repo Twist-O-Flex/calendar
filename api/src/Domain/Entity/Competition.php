@@ -5,9 +5,7 @@ namespace App\Domain\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Domain\DTO\CompetitionInput;
 use App\Domain\Serialization\SerializationGroups;
-use App\Domain\Type\CompetitionCategory;
 use Doctrine\ORM\Mapping as ORM;
-use Fresh\DoctrineEnumBundle\Validator\Constraints as DoctrineAssert;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -32,6 +30,22 @@ use Symfony\Component\Serializer\Annotation\Groups;
  */
 class Competition
 {
+    public const TYPE_TOURNAMENT = 'tournament';
+    public const TYPE_CHAMPIONSHIP = 'championship';
+    public const TYPE_GRAND_PRIX = 'grand_prix';
+    public const TYPE_CHALLENGE = 'challenge';
+    public const TYPE_NATIONAL = 'national';
+    public const TYPE_INTERCLUB = 'interclub';
+    public const ALL_TYPES = [
+        self::TYPE_TOURNAMENT,
+        self::TYPE_CHAMPIONSHIP,
+        self::TYPE_GRAND_PRIX,
+        self::TYPE_CHALLENGE,
+        self::TYPE_CHALLENGE,
+        self::TYPE_NATIONAL,
+        self::TYPE_INTERCLUB,
+    ];
+
     public const FORMATION_TAT = 'tat';
     public const FORMATION_DOU = 'dou';
     public const FORMATION_TRI = 'tri';
@@ -63,11 +77,11 @@ class Competition
     private $id;
 
     /**
-     * @ORM\Column(type="CompetitionCategory")
-     * @DoctrineAssert\Enum(entity=CompetitionCategory::class)
+     * @ORM\Column(type="string")
+     *
      * @Groups(SerializationGroups::COMPETITION_READ)
      */
-    private $category;
+    private $type;
 
     /**
      * @ORM\Column(type="string")
@@ -112,14 +126,14 @@ class Competition
         return $this->id;
     }
 
-    public function getCategory(): string
+    public function getType(): string
     {
-        return $this->category;
+        return $this->type;
     }
 
-    public function setCategory(string $category): self
+    public function setType(string $type): self
     {
-        $this->category = $category;
+        $this->type = $type;
 
         return $this;
     }
