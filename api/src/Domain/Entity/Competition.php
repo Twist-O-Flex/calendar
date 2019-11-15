@@ -44,7 +44,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * )
  * @ApiFilter(
  *     SearchFilter::class,
- *     properties={"type" = "exact", "formation" = "exact", "club.id" = "exact", "quotation" = "exact"}
+ *     properties={
+ *         "type" = "exact", "formation" = "exact", "club.id" = "exact", "quotation" = "exact",
+ *         "club.name" = "ipartial", "club.address.city" = "istart", "club.address.zipCode" = "start"
+ *     }
  * )
  */
 class Competition

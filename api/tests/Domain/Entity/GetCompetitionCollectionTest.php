@@ -157,5 +157,76 @@ class GetCompetitionCollectionTest extends ApiTestCase
             "quotation=foobar",
             true
         ];
+
+        yield 'club name not matching case' => [
+            'club.name=boule',
+            false,
+            function (array $competition) {
+                $this->assertRegExp('#boule#i', $competition['club']['name']);
+            }
+        ];
+
+        yield 'club name matching case' => [
+            'club.name=Boule',
+            false,
+            function (array $competition) {
+                $this->assertRegExp('#boule#i', $competition['club']['name']);
+            }
+        ];
+
+        yield 'club name with words not matching case' => [
+            'club.name=boule Dorée',
+            false,
+            function (array $competition) {
+                $this->assertRegExp('#boule Dorée#i', $competition['club']['name']);
+            }
+        ];
+
+        yield 'club name not found' => [
+            'club.name=foo',
+            true
+        ];
+
+        yield 'club city matching case' => [
+            'club.address.city=Sartrou',
+            false,
+            function (array $competition) {
+                $this->assertSame('Sartrouville', $competition['club']['address']['city']);
+            }
+        ];
+
+        yield 'city not matching case' => [
+            'club.address.city=sartrouville',
+            false,
+            function (array $competition) {
+                $this->assertSame('Sartrouville', $competition['club']['address']['city']);
+            }
+        ];
+
+        yield 'city not found' => [
+            'club.address.city=paris',
+            true
+        ];
+
+        yield 'Zip code' => [
+            'club.address.zipCode=78500',
+            false,
+            function (array $competition) {
+                $this->assertSame('78500', $competition['club']['address']['zipCode']);
+            }
+        ];
+
+        yield 'Zip code partial' => [
+            'club.address.zipCode=78500',
+            false,
+            function (array $competition) {
+                $this->assertRegExp('#^78#i', $competition['club']['address']['zipCode']);
+            }
+        ];
+
+        yield 'zip code not found' => [
+            'club.address.zipCode=75',
+            true
+        ];
     }
 }
