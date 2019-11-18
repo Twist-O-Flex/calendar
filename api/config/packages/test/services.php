@@ -4,6 +4,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use App\Domain\Repository\UserRepository;
 use App\Infrastructure\Api\Geo\CityRepository;
+use Psr\Cache\CacheItemPoolInterface;
 
 return function (ContainerConfigurator $configurator) {
     // default configuration for services in *this* file
@@ -16,5 +17,6 @@ return function (ContainerConfigurator $configurator) {
     $services
         ->alias("test." . UserRepository::class, UserRepository::class)
         ->alias("test" . CityRepository::class, CityRepository::class)
+        ->alias("test." . CacheItemPoolInterface::class, CacheItemPoolInterface::class)
     ;
 };

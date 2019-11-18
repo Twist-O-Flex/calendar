@@ -130,6 +130,9 @@
             "fixtures/.gitignore"
         ]
     },
+    "jangregor/phpstan-prophecy": {
+        "version": "0.4.2"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
