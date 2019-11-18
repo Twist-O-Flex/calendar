@@ -9,7 +9,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Embeddable
  */
-class City
+class City implements CityInterface
 {
     /**
      * @ORM\Column(type="string")

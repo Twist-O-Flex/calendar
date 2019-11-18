@@ -2,8 +2,13 @@
 
 namespace App\Domain\DTO;
 
+use App\Domain\Validation\Constraint\CityExists;
+use App\Domain\Validation\ValidationGroups;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * @CityExists(groups=ValidationGroups::CITY_DATA)
+ */
 final class CityInput
 {
     /**

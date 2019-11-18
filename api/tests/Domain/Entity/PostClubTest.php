@@ -69,6 +69,10 @@ class PostClubTest extends ApiTestCase
 
     public function invalidPayloadProvider(): \Generator
     {
+        /*
+         * Be aware validations are done sequentially
+         */
+
         yield [
             [],
             function (array $violations) {
@@ -85,18 +89,28 @@ class PostClubTest extends ApiTestCase
 
         yield [
             [
-                'name' => null,
                 'address' => [],
                 'contact' => [],
             ],
             function (array $violations) {
                 $this->assertSame(
                     [
-                        "name" => ["This value should not be blank."],
                         "address.city" => ["This value should not be null."],
                         "address.street" => ["This value should not be blank."],
                         "contact.emails" => ["This value should not be blank."],
                         "contact.phoneNumbers" => ["This value should not be blank."],
+                    ],
+                    $violations
+                );
+            }
+        ];
+
+        yield [
+            \array_replace(\iterator_to_array($this->validPayloadProvider())[0][0], ["name" => null]),
+            function (array $violations) {
+                $this->assertSame(
+                    [
+                        "name" => ["This value should not be blank."],
                     ],
                     $violations
                 );
@@ -126,6 +140,29 @@ class PostClubTest extends ApiTestCase
                         'address.city.zipCode' => ['This value should not be blank.'],
                         'contact.emails[0]' => ['This value is not a valid email address.'],
                         'contact.phoneNumbers[1]' => ['This is not a valid phone number.'],
+                    ],
+                    $violations
+                );
+            }
+        ];
+
+        yield [
+            \array_replace(
+                \iterator_to_array($this->validPayloadProvider())[0][0],
+                [
+                    'address' => [
+                        'city' => [
+                            'name' => 'foo',
+                            'zipCode' => '78500',
+                        ],
+                        'street' => '6 rue Lisse',
+                    ],
+                ]
+            ),
+            function (array $violations) {
+                $this->assertSame(
+                    [
+                        "address.city" => ["City not found from name: foo and zip code: 78500."],
                     ],
                     $violations
                 );
@@ -169,6 +206,23 @@ class PostClubTest extends ApiTestCase
                 'address' => [
                     'city' => [
                         'name' => 'Sartrouville',
+                        'zipCode' => '78500',
+                    ],
+                    'street' => '6 rue Lisse',
+                ],
+                'contact' => [
+                    'emails' => ['labouleazero@gmail.com'],
+                    'phoneNumbers' => ['0123456789'],
+                ],
+            ]
+        ];
+
+        yield [
+            [
+                'name' => 'La Boule A Zéro',
+                'address' => [
+                    'city' => [
+                        'name' => 'Sartrouvill', // correct name should be retrieved
                         'zipCode' => '78500',
                     ],
                     'street' => '6 rue Lisse',

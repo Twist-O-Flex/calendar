@@ -77,6 +77,10 @@ class PutClubTest extends ApiTestCase
 
     public function invalidPayloadProvider(): \Generator
     {
+        /*
+         * Be aware validations are done sequentially
+         */
+
         yield [
             'df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1',
             [],
@@ -95,18 +99,29 @@ class PutClubTest extends ApiTestCase
         yield [
             'df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1',
             [
-                'name' => null,
                 'address' => [],
                 'contact' => [],
             ],
             function (array $violations) {
                 $this->assertSame(
                     [
-                        "name" => ["This value should not be blank."],
                         "address.city" => ["This value should not be null."],
                         "address.street" => ["This value should not be blank."],
                         "contact.emails" => ["This value should not be blank."],
                         "contact.phoneNumbers" => ["This value should not be blank."],
+                    ],
+                    $violations
+                );
+            }
+        ];
+
+        yield [
+            'df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1',
+            \array_replace(\iterator_to_array($this->validPayloadProvider())[0][0], ["name" => null]),
+            function (array $violations) {
+                $this->assertSame(
+                    [
+                        "name" => ["This value should not be blank."],
                     ],
                     $violations
                 );
@@ -137,6 +152,30 @@ class PutClubTest extends ApiTestCase
                         'address.city.zipCode' => ['This value should not be blank.'],
                         'contact.emails[0]' => ['This value is not a valid email address.'],
                         'contact.phoneNumbers[1]' => ['This is not a valid phone number.'],
+                    ],
+                    $violations
+                );
+            }
+        ];
+
+        yield [
+            'df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1',
+            \array_replace(
+                \iterator_to_array($this->validPayloadProvider())[0][0],
+                [
+                    'address' => [
+                        'city' => [
+                            'name' => 'bar',
+                            'zipCode' => '78500',
+                        ],
+                        'street' => '6 rue Lisse',
+                    ],
+                ]
+            ),
+            function (array $violations) {
+                $this->assertSame(
+                    [
+                        "address.city" => ["City not found from name: bar and zip code: 78500."],
                     ],
                     $violations
                 );
@@ -191,6 +230,29 @@ class PutClubTest extends ApiTestCase
                 'address' => [
                     'city' => [
                         'name' => 'Pamiers',
+                        'zipCode' => '09100',
+                    ],
+                    'street' => '4 rue penchée',
+                ],
+                'contact' => [
+                    'emails' => [
+                        'laboulequiroule@gmail.com',
+                        'marcel.patoulachi@gmail.com',
+                    ],
+                    'phoneNumbers' => [
+                        '0598764321',
+                        '0512346789',
+                    ],
+                ],
+            ]
+        ];
+
+        yield [
+            [
+                'name' => 'La Boule Qui Roule',
+                'address' => [
+                    'city' => [
+                        'name' => 'Pamier', // correct name should be retrieved
                         'zipCode' => '09100',
                     ],
                     'street' => '4 rue penchée',

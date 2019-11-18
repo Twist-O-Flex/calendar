@@ -2,7 +2,7 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use App\Domain\Repository\UserRepository;
+use App\Domain\Repository\CityRepositoryInterface;
 use App\Infrastructure\Api\Geo\CityRepository;
 
 return function (ContainerConfigurator $configurator) {
@@ -14,7 +14,6 @@ return function (ContainerConfigurator $configurator) {
     ;
 
     $services
-        ->alias("test." . UserRepository::class, UserRepository::class)
-        ->alias("test" . CityRepository::class, CityRepository::class)
+        ->alias(CityRepositoryInterface::class, CityRepository::class)
     ;
 };
