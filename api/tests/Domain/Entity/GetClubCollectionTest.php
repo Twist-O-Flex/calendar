@@ -30,8 +30,11 @@ class GetClubCollectionTest extends ApiTestCase
             $this->assertCount(5, $club);
 
             $this->assertArrayHasKey("city", $club['address']);
-            $this->assertArrayHasKey("zipCode", $club['address']);
-            $this->assertCount(2, $club['address']);
+            $this->assertCount(1, $club['address']);
+
+            $this->assertArrayHasKey("name", $club['address']['city']);
+            $this->assertArrayHasKey("zipCode", $club['address']['city']);
+            $this->assertCount(2, $club['address']['city']);
         }
 
         $this->assertCount(3, $content["hydra:member"]);
@@ -96,44 +99,44 @@ class GetClubCollectionTest extends ApiTestCase
         ];
 
         yield 'city matching case' => [
-            'address.city=Sartrou',
+            'address.city.name=Sartrou',
             false,
             function (array $club) {
-                $this->assertSame('Sartrouville', $club['address']['city']);
+                $this->assertSame('Sartrouville', $club['address']['city']['name']);
             }
         ];
 
         yield 'city not matching case' => [
-            'address.city=sartrouville',
+            'address.city.name=sartrouville',
             false,
             function (array $club) {
-                $this->assertSame('Sartrouville', $club['address']['city']);
+                $this->assertSame('Sartrouville', $club['address']['city']['name']);
             }
         ];
 
         yield 'city not found' => [
-            'address.city=paris',
+            'address.city.name=paris',
             true
         ];
 
         yield 'Zip code' => [
-            'address.zipCode=78500',
+            'address.city.zipCode=78500',
             false,
             function (array $club) {
-                $this->assertSame('78500', $club['address']['zipCode']);
+                $this->assertSame('78500', $club['address']['city']['zipCode']);
             }
         ];
 
         yield 'Zip code partial' => [
-            'address.zipCode=78500',
+            'address.city.zipCode=78500',
             false,
             function (array $club) {
-                $this->assertRegExp('#^78#i', $club['address']['zipCode']);
+                $this->assertRegExp('#^78#i', $club['address']['city']['zipCode']);
             }
         ];
 
         yield 'zip code not found' => [
-            'address.zipCode=75',
+            'address.city.zipCode=75',
             true
         ];
     }

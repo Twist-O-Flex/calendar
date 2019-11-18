@@ -21,8 +21,10 @@ class GetClubItemTest extends ApiTestCase
                 'id' => 'df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1',
                 'name' => 'Boule luisante',
                 'address' => [
-                    'city' => 'Sartrouville',
-                    'zipCode' => '78500',
+                    'city' => [
+                        'name' => 'Sartrouville',
+                        'zipCode' => '78500',
+                    ],
                     'street' => '4 rue de la pouille',
                 ],
                 'contact' => [

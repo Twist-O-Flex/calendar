@@ -15,19 +15,29 @@ App\Domain\Entity\Contact:
 
 App\Domain\Entity\Address:
   address_{1..10}:
-    city: <city()>
-    zipCode: <postcode()>
+    city: '@city_<current()>'
     street: <streetAddress()>
 
   address_11:
-    city: 'Sartrouville'
-    zipCode: '78500'
+    city: '@city_11'
     street: '4 rue de la pouille'
 
   address_12:
-    city: 'Maison-Laffitte'
-    zipCode: '78600'
+    city: '@city_12'
     street: '1 rue du Cheval'
+
+App\Domain\Entity\City:
+  city_{1..10}:
+    name: <city()>
+    zipCode: <postcode()>
+
+  city_11:
+    name: 'Sartrouville'
+    zipCode: '78500'
+
+  city_12:
+    name: 'Maison-Laffitte'
+    zipCode: '78600'
 
 App\Domain\Entity\Club:
   club_{1..10}:

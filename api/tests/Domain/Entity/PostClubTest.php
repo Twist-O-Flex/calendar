@@ -28,8 +28,10 @@ class PostClubTest extends ApiTestCase
         $this->assertSame('La Boule A Zéro', $content['name']);
         $this->assertSame(
             [
-                'city' => 'Sartrouville',
-                'zipCode' => '78500',
+                'city' => [
+                    'name' => 'Sartrouville',
+                    'zipCode' => '78500',
+                ],
                 'street' => '6 rue Lisse',
             ],
             $content['address']
@@ -91,8 +93,7 @@ class PostClubTest extends ApiTestCase
                 $this->assertSame(
                     [
                         "name" => ["This value should not be blank."],
-                        "address.city" => ["This value should not be blank."],
-                        "address.zipCode" => ["This value should not be blank."],
+                        "address.city" => ["This value should not be null."],
                         "address.street" => ["This value should not be blank."],
                         "contact.emails" => ["This value should not be blank."],
                         "contact.phoneNumbers" => ["This value should not be blank."],
@@ -106,8 +107,10 @@ class PostClubTest extends ApiTestCase
             [
                 'name' => 123456,
                 'address' => [
-                    'city' => 'Sartrouville',
-                    'zipCode' => '78500',
+                    'city' => [
+                        'name' => '',
+                        'zipCode' => '',
+                    ],
                     'street' => '6 rue Lisse',
                 ],
                 'contact' => [
@@ -119,6 +122,8 @@ class PostClubTest extends ApiTestCase
                 $this->assertSame(
                     [
                         'name' => ['This value should be of type string.'],
+                        'address.city.name' => ['This value should not be blank.'],
+                        'address.city.zipCode' => ['This value should not be blank.'],
                         'contact.emails[0]' => ['This value is not a valid email address.'],
                         'contact.phoneNumbers[1]' => ['This is not a valid phone number.'],
                     ],
@@ -162,8 +167,10 @@ class PostClubTest extends ApiTestCase
             [
                 'name' => 'La Boule A Zéro',
                 'address' => [
-                    'city' => 'Sartrouville',
-                    'zipCode' => '78500',
+                    'city' => [
+                        'name' => 'Sartrouville',
+                        'zipCode' => '78500',
+                    ],
                     'street' => '6 rue Lisse',
                 ],
                 'contact' => [

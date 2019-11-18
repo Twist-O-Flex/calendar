@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Address
 {
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Embedded(class="App\Domain\Entity\City")
      *
      * @Groups(SerializationGroups::READ)
      */
@@ -21,37 +21,18 @@ class Address
     /**
      * @ORM\Column(type="string")
      *
-     * @Groups(SerializationGroups::READ)
-     */
-    private $zipCode;
-
-    /**
-     * @ORM\Column(type="string")
-     *
      * @Groups(SerializationGroups::ITEM_READ)
      */
     private $street;
 
-    public function getCity(): string
+    public function getCity(): City
     {
         return $this->city;
     }
 
-    public function setCity(string $city): self
+    public function setCity(City $city): self
     {
         $this->city = $city;
-
-        return $this;
-    }
-
-    public function getZipCode(): string
-    {
-        return $this->zipCode;
-    }
-
-    public function setZipCode(string $zipCode): self
-    {
-        $this->zipCode = $zipCode;
 
         return $this;
     }

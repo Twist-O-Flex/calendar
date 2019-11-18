@@ -29,16 +29,19 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * )
  * @ApiFilter(
  *     SearchFilter::class,
- *     properties={"name" = "ipartial", "address.city" = "istart", "address.zipCode" = "start"}
+ *     properties={"name" = "ipartial", "address.city.name" = "istart", "address.city.zipCode" = "start"}
  * )
  * @ORM\Entity
  * @ORM\Table(
  *     name="club",
  *     indexes={
  *         @ORM\Index(name="name_idx", columns={"name"}),
- *         @ORM\Index(name="address_city_idx", columns={"address_city"}),
- *         @ORM\Index(name="address_zip_code_idx", columns={"address_zip_code"}),
- *         @ORM\Index(name="address_zip_code_city_idx", columns={"address_zip_code", "address_city"}),
+ *         @ORM\Index(name="address_city_name_idx", columns={"address_city_name"}),
+ *         @ORM\Index(name="address_city_zip_code_idx", columns={"address_city_zip_code"}),
+ *         @ORM\Index(
+ *             name="address_city_zip_code_city_name_idx",
+ *             columns={"address_city_zip_code", "address_city_name"}
+ *         ),
  *     }
  * )
  */

@@ -46,7 +46,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     SearchFilter::class,
  *     properties={
  *         "type" = "exact", "formation" = "exact", "club.id" = "exact", "quotation" = "exact",
- *         "club.name" = "ipartial", "club.address.city" = "istart", "club.address.zipCode" = "start"
+ *         "club.name" = "ipartial", "club.address.city.name" = "istart", "club.address.city.zipCode" = "start"
  *     }
  * )
  */

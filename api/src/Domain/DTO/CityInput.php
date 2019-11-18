@@ -4,19 +4,17 @@ namespace App\Domain\DTO;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-final class AddressInput
+final class CityInput
 {
     /**
-     * @var CityInput
-     *
-     * @Assert\NotNull
-     * @Assert\Valid
+     * @Assert\Type("string")
+     * @Assert\NotBlank
      */
-    public $city;
+    public $name;
 
     /**
      * @Assert\Type("string")
      * @Assert\NotBlank
      */
-    public $street;
+    public $zipCode;
 }
