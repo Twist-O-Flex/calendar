@@ -2,7 +2,7 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use App\Domain\Repository\UserRepository;
+use App\Infrastructure\Repository\UserRepository;
 use App\Infrastructure\Api\Geo\CityRepository;
 use Psr\Cache\CacheItemPoolInterface;
 

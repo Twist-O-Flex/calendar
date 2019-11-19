@@ -4,8 +4,10 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use App\Application\DataTransformer\ClubInputDataTransformer;
 use App\Domain\Repository\CityRepositoryInterface;
+use App\Domain\Repository\ClubRepositoryInterface;
 use App\Infrastructure\Api\Geo\CityRepository;
 use App\Infrastructure\Api\Geo\CityRepositoryCache;
+use App\Infrastructure\Repository\ClubRepositoryAdapter;
 
 return function (ContainerConfigurator $configurator) {
     // default configuration for services in *this* file
@@ -26,6 +28,7 @@ return function (ContainerConfigurator $configurator) {
      */
     $services
         ->alias(CityRepositoryInterface::class, CityRepositoryCache::class)
+        ->alias(ClubRepositoryInterface::class, ClubRepositoryAdapter::class)
     ;
 
     /*

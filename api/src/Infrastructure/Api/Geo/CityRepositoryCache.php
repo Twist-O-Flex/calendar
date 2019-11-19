@@ -19,7 +19,7 @@ class CityRepositoryCache implements CityRepositoryInterface
 
     public function getCityByNameAndZipCode(string $name, string $zipCode): ?CityInterface
     {
-        $item = $this->cache->getItem(sha1("api:geo:city:$name:$zipCode"));
+        $item = $this->cache->getItem(\sha1("api:geo:city:$name:$zipCode"));
 
         if (!$item->isHit()) {
             $item->set($this->decorated->getCityByNameAndZipCode($name, $zipCode));

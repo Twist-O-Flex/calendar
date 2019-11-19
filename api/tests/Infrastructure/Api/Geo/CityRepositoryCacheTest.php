@@ -6,7 +6,6 @@ use App\Domain\Repository\CityRepositoryInterface;
 use App\Infrastructure\Api\Geo\City;
 use App\Infrastructure\Api\Geo\CityRepositoryCache;
 use App\Tests\ApiTestCase;
-use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Psr\Cache\CacheItemPoolInterface;
 
@@ -18,7 +17,7 @@ class CityRepositoryCacheTest extends ApiTestCase
 
         /** @var CacheItemPoolInterface $cache */
         $cache = $this->get("test." . CacheItemPoolInterface::class);
-        $cache->deleteItem(sha1("api:geo:city:Sartrouville:78500"));
+        $cache->deleteItem(\sha1("api:geo:city:Sartrouville:78500"));
 
         $decoratedStub = $this->prophesize(CityRepositoryInterface::class);
         $decoratedStub
@@ -28,7 +27,7 @@ class CityRepositoryCacheTest extends ApiTestCase
         $cityRepository = new CityRepositoryCache($decoratedStub->reveal(), $cache);
         $this->assertEquals($expectedCity, $cityRepository->getCityByNameAndZipCode("Sartrouville", "78500"));
 
-        $this->assertTrue($cache->getItem(sha1("api:geo:city:Sartrouville:78500"))->isHit());
+        $this->assertTrue($cache->getItem(\sha1("api:geo:city:Sartrouville:78500"))->isHit());
     }
 
     public function testGetCityByNameAndZipCodeShouldNotCallDecorated(): void
@@ -37,8 +36,8 @@ class CityRepositoryCacheTest extends ApiTestCase
 
         /** @var CacheItemPoolInterface $cache */
         $cache = $this->get("test." . CacheItemPoolInterface::class);
-        $cache->deleteItem(sha1("api:geo:city:Sartrouville:78500"));
-        $item = $cache->getItem(sha1("api:geo:city:Sartrouville:78500"));
+        $cache->deleteItem(\sha1("api:geo:city:Sartrouville:78500"));
+        $item = $cache->getItem(\sha1("api:geo:city:Sartrouville:78500"));
         $item->set($expectedCity);
         $cache->save($item);
 
@@ -50,6 +49,6 @@ class CityRepositoryCacheTest extends ApiTestCase
         $cityRepository = new CityRepositoryCache($decoratedStub->reveal(), $cache);
         $this->assertEquals($expectedCity, $cityRepository->getCityByNameAndZipCode("Sartrouville", "78500"));
 
-        $this->assertTrue($cache->getItem(sha1("api:geo:city:Sartrouville:78500"))->isHit());
+        $this->assertTrue($cache->getItem(\sha1("api:geo:city:Sartrouville:78500"))->isHit());
     }
 }

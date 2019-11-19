@@ -3,7 +3,7 @@
 namespace App\Tests;
 
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test;
-use App\Domain\Repository\UserRepository;
+use App\Infrastructure\Repository\UserRepository;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class ApiTestCase extends Test\ApiTestCase

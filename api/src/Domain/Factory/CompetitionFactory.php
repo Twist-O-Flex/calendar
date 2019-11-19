@@ -4,14 +4,14 @@ namespace App\Domain\Factory;
 
 use App\Domain\DTO\CompetitionInput;
 use App\Domain\Entity\Competition;
-use App\Domain\Repository\ClubRepository;
+use App\Domain\Repository\ClubRepositoryInterface;
 use Webmozart\Assert\Assert;
 
 class CompetitionFactory
 {
     private $clubRepository;
 
-    public function __construct(ClubRepository $clubRepository)
+    public function __construct(ClubRepositoryInterface $clubRepository)
     {
         $this->clubRepository = $clubRepository;
     }
