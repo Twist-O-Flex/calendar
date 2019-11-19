@@ -28,7 +28,7 @@ class PutCompetitionTest extends ApiTestCase
         $this->assertArrayHasKey('id', $content);
         $this->assertSame('national', $content['type']);
         $this->assertSame('dou', $content['formation']);
-        $this->assertSame('/clubs/df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1', $content['club']);
+        $this->assertSame('/clubs/e72a6b32-6066-5900-8dfa-aaa30a3553ae', $content['club']);
         $this->assertEquals(
             new \DateTimeImmutable('2019-11-09T17:08:51+01:00'),
             new \DateTimeImmutable($content['startDate'])
@@ -43,7 +43,7 @@ class PutCompetitionTest extends ApiTestCase
             [
                 'type' => 'national',
                 'formation' => 'dou',
-                'club' => ['id' => 'df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1'],
+                'club' => ['id' => 'e72a6b32-6066-5900-8dfa-aaa30a3553ae'],
                 'startDate' => '2019-11-09T17:08:51+01:00',
                 'duration' => 5,
                 'quotation' => 'pro',
@@ -152,7 +152,7 @@ class PutCompetitionTest extends ApiTestCase
             [
                 'type' => 'championship',
                 'formation' => 'tri',
-                'club' => ['id' => 'df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1'],
+                'club' => ['id' => 'e72a6b32-6066-5900-8dfa-aaa30a3553ae'],
                 'startDate' => '2019-11-06T15:08:51+01:00',
                 'duration' => '2',
                 'quotation' => 'tc',

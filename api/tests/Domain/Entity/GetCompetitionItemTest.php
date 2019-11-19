@@ -21,9 +21,9 @@ class GetCompetitionItemTest extends ApiTestCase
                 "type" => "national",
                 "formation" => "tri",
                 "club" => [
-                    "@id" => "/clubs/df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1",
+                    "@id" => "/clubs/e72a6b32-6066-5900-8dfa-aaa30a3553ae",
                     "@type" => "Club",
-                    "id" => "df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1",
+                    "id" => "e72a6b32-6066-5900-8dfa-aaa30a3553ae",
                     "name" => "Boule luisante",
                     "address" => [
                         "city" => [

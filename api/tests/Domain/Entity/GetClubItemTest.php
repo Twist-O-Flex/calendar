@@ -8,7 +8,7 @@ class GetClubItemTest extends ApiTestCase
 {
     public function testSchema(): void
     {
-        $response = static::createClient()->request('GET', '/clubs/df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1');
+        $response = static::createClient()->request('GET', '/clubs/e72a6b32-6066-5900-8dfa-aaa30a3553ae');
 
         $this->assertResponseIsSuccessful();
         $this->assertJson($response->getContent());
@@ -16,9 +16,9 @@ class GetClubItemTest extends ApiTestCase
         $this->assertSame(
             [
                 '@context' => '/contexts/Club',
-                '@id' => '/clubs/df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1',
+                '@id' => '/clubs/e72a6b32-6066-5900-8dfa-aaa30a3553ae',
                 '@type' => 'Club',
-                'id' => 'df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1',
+                'id' => 'e72a6b32-6066-5900-8dfa-aaa30a3553ae',
                 'name' => 'Boule luisante',
                 'address' => [
                     'city' => [

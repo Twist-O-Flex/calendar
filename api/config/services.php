@@ -2,7 +2,6 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use App\Application\DataTransformer\ClubInputDataTransformer;
 use App\Domain\Repository\CityRepositoryInterface;
 use App\Domain\Repository\ClubRepositoryInterface;
 use App\Infrastructure\Api\Geo\CityRepository;

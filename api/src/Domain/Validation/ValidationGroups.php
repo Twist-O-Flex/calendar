@@ -12,5 +12,5 @@ final class ValidationGroups
     public const COMPETITION_PUT = 'competition:put';
     public const COMPETITION_WRITE = [self::COMPETITION_POST, self::COMPETITION_PUT];
 
-    public const CITY_DATA = 'city:data';
+    public const CITY_CLASS = 'city:class';
 }

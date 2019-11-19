@@ -14,7 +14,7 @@ class PutClubTest extends ApiTestCase
     {
         $response = $this->getAuthenticatedClientWith('021c6dc9-4a8e-416a-96ca-b73fed2adb35')->request(
             'PUT',
-            '/clubs/df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1',
+            '/clubs/e72a6b32-6066-5900-8dfa-aaa30a3553ae',
             [
                 'json' => $payload,
             ]
@@ -82,7 +82,7 @@ class PutClubTest extends ApiTestCase
          */
 
         yield [
-            'df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1',
+            'e72a6b32-6066-5900-8dfa-aaa30a3553ae',
             [],
             function (array $violations) {
                 $this->assertSame(
@@ -97,7 +97,7 @@ class PutClubTest extends ApiTestCase
         ];
 
         yield [
-            'df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1',
+            'e72a6b32-6066-5900-8dfa-aaa30a3553ae',
             [
                 'address' => [],
                 'contact' => [],
@@ -116,7 +116,7 @@ class PutClubTest extends ApiTestCase
         ];
 
         yield [
-            'df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1',
+            'e72a6b32-6066-5900-8dfa-aaa30a3553ae',
             \array_replace(\iterator_to_array($this->validPayloadProvider())[0][0], ["name" => null]),
             function (array $violations) {
                 $this->assertSame(
@@ -129,7 +129,7 @@ class PutClubTest extends ApiTestCase
         ];
 
         yield [
-            'df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1',
+            'e72a6b32-6066-5900-8dfa-aaa30a3553ae',
             [
                 'name' => 123456,
                 'address' => [
@@ -159,7 +159,7 @@ class PutClubTest extends ApiTestCase
         ];
 
         yield [
-            'df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1',
+            'e72a6b32-6066-5900-8dfa-aaa30a3553ae',
             \array_replace(
                 \iterator_to_array($this->validPayloadProvider())[0][0],
                 [
@@ -190,7 +190,7 @@ class PutClubTest extends ApiTestCase
     {
         $this->getAnonymousClient()->request(
             'PUT',
-            '/clubs/df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1',
+            '/clubs/e72a6b32-6066-5900-8dfa-aaa30a3553ae',
             ['json' => $payload]
         );
         $this->assertResponseStatusCodeSame(Response::HTTP_UNAUTHORIZED);
@@ -203,7 +203,7 @@ class PutClubTest extends ApiTestCase
     {
         $this->getAuthenticatedClientWith('c1b618cf-e3c0-4119-a6ee-ef1c0d325bc3')->request(
             'PUT',
-            '/clubs/df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1',
+            '/clubs/e72a6b32-6066-5900-8dfa-aaa30a3553ae',
             ['json' => $payload]
         );
         $this->assertResponseStatusCodeSame(Response::HTTP_FORBIDDEN);

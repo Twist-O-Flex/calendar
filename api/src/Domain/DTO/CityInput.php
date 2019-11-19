@@ -7,7 +7,7 @@ use App\Domain\Validation\ValidationGroups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @CityExists(groups=ValidationGroups::CITY_DATA)
+ * @CityExists(groups=ValidationGroups::CITY_CLASS)
  */
 final class CityInput
 {

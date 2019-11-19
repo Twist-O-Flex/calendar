@@ -2,6 +2,7 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
+use App\Domain\Identifier\ClubIdGenerator;
 use App\Infrastructure\Repository\UserRepository;
 use App\Infrastructure\Api\Geo\CityRepository;
 use Psr\Cache\CacheItemPoolInterface;
@@ -18,5 +19,6 @@ return function (ContainerConfigurator $configurator) {
         ->alias("test." . UserRepository::class, UserRepository::class)
         ->alias("test" . CityRepository::class, CityRepository::class)
         ->alias("test." . CacheItemPoolInterface::class, CacheItemPoolInterface::class)
+        ->alias("test." . ClubIdGenerator::class, ClubIdGenerator::class)
     ;
 };

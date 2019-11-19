@@ -119,19 +119,19 @@ class GetCompetitionCollectionTest extends ApiTestCase
             true
         ];
 
-        yield "club df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1" => [
-            "club.id=df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1",
+        yield "club e72a6b32-6066-5900-8dfa-aaa30a3553ae" => [
+            "club.id=e72a6b32-6066-5900-8dfa-aaa30a3553ae",
             false,
             function (array $competition) {
-                $this->assertSame("df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1", $competition['club']['id']);
+                $this->assertSame("e72a6b32-6066-5900-8dfa-aaa30a3553ae", $competition['club']['id']);
             }
         ];
 
-        yield "club a2782b47-3147-445d-9341-a2548a0c3e33" => [
-            "club.id=a2782b47-3147-445d-9341-a2548a0c3e33",
+        yield "club a070794d-5698-55bb-997e-b52a169668e5" => [
+            "club.id=a070794d-5698-55bb-997e-b52a169668e5",
             false,
             function (array $competition) {
-                $this->assertSame("a2782b47-3147-445d-9341-a2548a0c3e33", $competition['club']['id']);
+                $this->assertSame("a070794d-5698-55bb-997e-b52a169668e5", $competition['club']['id']);
             }
         ];
 

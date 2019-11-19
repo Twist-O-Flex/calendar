@@ -205,23 +205,6 @@ class PostClubTest extends ApiTestCase
                 'name' => 'La Boule A Zéro',
                 'address' => [
                     'city' => [
-                        'name' => 'Sartrouville',
-                        'zipCode' => '78500',
-                    ],
-                    'street' => '6 rue Lisse',
-                ],
-                'contact' => [
-                    'emails' => ['labouleazero@gmail.com'],
-                    'phoneNumbers' => ['0123456789'],
-                ],
-            ]
-        ];
-
-        yield [
-            [
-                'name' => 'La Boule A Zéro',
-                'address' => [
-                    'city' => [
                         'name' => 'Sartrouvill', // correct name should be retrieved
                         'zipCode' => '78500',
                     ],
@@ -233,5 +216,32 @@ class PostClubTest extends ApiTestCase
                 ],
             ]
         ];
+    }
+
+    public function testPostWithAlreadyExistingClubReturnRedirection(): void
+    {
+        $response = $this->getAuthenticatedClientWith('021c6dc9-4a8e-416a-96ca-b73fed2adb35')->request(
+            'POST',
+            '/clubs',
+            [
+                'json' => [
+                    "name" => "Boule luisante",
+                    'address' => [
+                        'city' => [
+                            'name' => 'Sartrouvill',
+                            'zipCode' => '78500',
+                        ],
+                        'street' => '4 rue de la pouille',
+                    ],
+                    'contact' => [
+                        'emails' => ['labouleazero@gmail.com'],
+                        'phoneNumbers' => ['0123456789'],
+                    ],
+                ]
+            ]
+        );
+
+        $this->assertSame(Response::HTTP_FOUND, $response->getStatusCode());
+        $this->assertSame(["/clubs/e72a6b32-6066-5900-8dfa-aaa30a3553ae"], $response->getHeaders(false)["location"]);
     }
 }

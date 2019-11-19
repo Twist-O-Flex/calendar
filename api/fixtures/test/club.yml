@@ -41,17 +41,17 @@ App\Domain\Entity\City:
 
 App\Domain\Entity\Club:
   club_{1..10}:
-    id: <uuid()>
+    id: <((new \Ramsey\Uuid\UuidFactory())->uuid4())>
     name: <company()>
     contact: '@contact_<current()>'
     address: '@address_<current()>'
   club_11:
-    id: <((new \Ramsey\Uuid\UuidFactory())->fromString('df9fcbae-c6ff-11e8-a8d5-f2801f1b9fd1'))>
+    id: <((new \Ramsey\Uuid\UuidFactory())->fromString('e72a6b32-6066-5900-8dfa-aaa30a3553ae'))> # UUID5
     name: 'Boule luisante'
     contact: '@contact_11'
     address: '@address_11'
   club_12:
-    id: <((new \Ramsey\Uuid\UuidFactory())->fromString('a2782b47-3147-445d-9341-a2548a0c3e33'))>
+    id: <((new \Ramsey\Uuid\UuidFactory())->fromString('a070794d-5698-55bb-997e-b52a169668e5'))> # UUID5
     name: 'La Boule Dorée'
     contact: '@contact_1'
     address: '@address_12'

@@ -16,11 +16,21 @@ class ClubFactory
         $this->addressFactory = $addressFactory;
     }
 
-    public function fromClubInput(ClubInput $clubInput): Club
+    public function createOrHydrate(ClubInput $clubInput, Club $club = null): Club
     {
-        return (new Club())
+        if (null === $club) {
+            $club = new Club();
+        }
+
+        $club
             ->setName($clubInput->name)
             ->setContact($this->contactFactory->fromContactInput($clubInput->contact))
             ->setAddress($this->addressFactory->fromAddressInput($clubInput->address));
+
+        if (null !== $clubInput->id) {
+            $club->setId($clubInput->id);
+        }
+
+        return $club;
     }
 }
